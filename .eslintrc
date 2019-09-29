@@ -1,0 +1,23 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+    "indent": ["error", 2],
+    "curly": "error",
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "no-console": 0,
+    "comma-dangle": 0
+    // "no-cond-assign": ["error", "always"],
+    // "no-set-state": "off",
+    // "init-declarations": "off",
+    // "no-inline-comments": "off"
+  }
+}

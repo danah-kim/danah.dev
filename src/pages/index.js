@@ -1,21 +1,51 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState, useEffect } from "react";
+import { Link } from "gatsby";
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import SEO from "../components/seo";
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+const IndexPage = () => {
+  const [isPreloaded, setIsPreloaded] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPreloaded(false);
+    }, 100);
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, []);
+
+  return (
+    <div className={isPreloaded ? "main-body is-preload" : "main-body"}>
+      <SEO title="Home" keywords={["blog", "developement"]} />
+      <h1>Main</h1>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/blog">Blog</Link>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/sweetmilkys"
+          >
+            Github
+          </a>
+        </li>
+        <li>
+          <Link to="/email">Email</Link>
+        </li>
+      </ul>
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+  );
+};
 
-export default IndexPage
+export default IndexPage;

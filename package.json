@@ -1,33 +1,46 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "danah.dev",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Software Engineer Danah's Blog",
+  "author": {
+    "name": "Danah Kim",
+    "email": "sweetmilky.dev@gmail.com"
+  },
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "gatsby": "^2.15.20",
     "gatsby-image": "^2.2.20",
     "gatsby-plugin-manifest": "^2.2.18",
+    "gatsby-plugin-netlify": "^2.1.17",
     "gatsby-plugin-offline": "^3.0.8",
     "gatsby-plugin-react-helmet": "^3.1.8",
     "gatsby-plugin-sharp": "^2.2.25",
+    "gatsby-remark-embed-video": "^2.0.0",
+    "gatsby-remark-images": "^3.1.25",
+    "gatsby-remark-prismjs": "^3.3.16",
+    "gatsby-remark-reading-time": "^1.0.1",
     "gatsby-source-filesystem": "^2.1.26",
-    "gatsby-transformer-sharp": "^2.2.16",
+    "gatsby-transformer-remark": "^2.6.26",
+    "gatsby-transformer-sharp": "^2.2.19",
+    "prismjs": "^1.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.4.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.14.3",
+    "gatsby-plugin-eslint": "^2.0.5",
     "prettier": "^1.18.2"
   },
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
     "develop": "gatsby develop",
+    "build": "gatsby build",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -35,9 +48,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/sweetmilkys/danah.dev"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/sweetmilkys/danah.dev/issues"
   }
 }
