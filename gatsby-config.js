@@ -1,53 +1,49 @@
-const config = require("./config");
+const metaConfig = require("./gatsby-meta-config");
 
 module.exports = {
-  siteMetadata: {
-    title: config.siteTitle,
-    description: config.description,
-    author: config.author,
-  },
+  siteMetadata: metaConfig,
   plugins: [
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "marksdown-pages",
-        path: `${__dirname}/src/posts/TIL`,
+        path: `${__dirname}/posts/TIL`,
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "marksdown-pages",
-        path: `${__dirname}/src/posts/HTML`,
+        path: `${__dirname}/posts/HTML`,
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "marksdown-pages",
-        path: `${__dirname}/src/posts/CSS`,
+        path: `${__dirname}/posts/CSS`,
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "marksdown-pages",
-        path: `${__dirname}/src/posts/JavaScript`,
+        path: `${__dirname}/posts/JavaScript`,
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "marksdown-pages",
-        path: `${__dirname}/src/posts/React`,
+        path: `${__dirname}/posts/React`,
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "marksdown-pages",
-        path: `${__dirname}/src/posts/DataStructuresAlgorithms`,
+        path: `${__dirname}/posts/DataStructuresAlgorithms`,
       },
     },
     {
@@ -91,13 +87,13 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: config.manifestName,
-        short_name: config.manifestShortName,
-        start_url: config.pathPrefix || config.manifestStartUrl,
-        background_color: config.manifestBackgroundColor,
-        theme_color: config.manifestThemeColor,
-        display: config.manifestDisplay,
-        icon: config.manifestIcon,
+        name: metaConfig.manifestName,
+        short_name: metaConfig.manifestShortName,
+        start_url: metaConfig.pathPrefix || metaConfig.manifestStartUrl,
+        background_color: metaConfig.manifestBackgroundColor,
+        theme_color: metaConfig.manifestThemeColor,
+        display: metaConfig.manifestDisplay,
+        icon: metaConfig.manifestIcon,
       },
     },
     {
