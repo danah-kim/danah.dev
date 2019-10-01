@@ -4,6 +4,9 @@ import theme from "../theme";
 
 const globalStyles = createGlobalStyle`
   ${reset};
+  *, :after, :before {
+    box-sizing: inherit;
+  }
   body {
     margin:0;
     padding:0;
@@ -23,6 +26,12 @@ const globalStyles = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
+  }
+  li, i {
+    :hover {
+      transition: 0.5s all;
+      color: ${theme.mainColor};
+    }
   }
 `;
 

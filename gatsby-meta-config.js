@@ -6,17 +6,14 @@ module.exports = {
   manifestName: "Danah - love Programming",
   manifestShortName: "Danah's Blog", // max 12 characters
   manifestStartUrl: "/",
-  manifestBackgroundColor: "#663399",
-  manifestThemeColor: "#663399",
+  manifestBackgroundColor: "#EA8484",
+  manifestThemeColor: "#EA8484",
   manifestDisplay: "minimal-ui",
-  icon: "src/assets/images/logo.png",
+  manifestIcon: "src/assets/images/logo.png",
   keywords: ["blog"],
   heading: "Danah Kim",
   subHeading: "Slow, but steady progress",
   social: {
-    github: {
-      name: "sweetmilkys",
-      icon: "fa-github",
-    },
+    github: "sweetmilkys",
   },
 };

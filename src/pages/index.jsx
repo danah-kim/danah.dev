@@ -159,9 +159,7 @@ const IndexPage = () => {
     site: {
       siteMetadata: {
         author,
-        social: {
-          github: { name: githubName },
-        },
+        social: { github },
         heading,
         subHeading,
       },
@@ -175,15 +173,14 @@ const IndexPage = () => {
             heading
             subHeading
             social {
-              github {
-                name
-              }
+              github
             }
           }
         }
       }
     `
   );
+
   const [isPreloaded, setIsPreloaded] = useState(true);
 
   useEffect(() => {
@@ -231,7 +228,7 @@ const IndexPage = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={`https://github.com/${githubName}`}
+                  href={`https://github.com/${github}`}
                 >
                   Github
                 </a>
@@ -245,7 +242,11 @@ const IndexPage = () => {
       </CardBox>
       <Footer>
         &copy;<a href="https://github.com/sweetmilkys">Danah</a>, Built with{" "}
-        <a href="https://github.com/sweetmilkys/gatsby-starter-sweet-blog">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/sweetmilkys/gatsby-starter-sweet-blog"
+        >
           Gatsby-starter-sweet-blog
         </a>
       </Footer>

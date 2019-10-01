@@ -1,10 +1,10 @@
 const theme = {
-  mainColor: "#ea8484",
+  mainColor: "#EA8484",
   nickNameCcolor: "#fff",
   blackColor: "#333",
   grayColor: "#585858",
-  dangerColor: "#e74c3c",
-  successColor: "#2ecc71",
+  dangerColor: "#E74C3C",
+  successColor: "#2ECC71",
 };
 
 export default theme;
