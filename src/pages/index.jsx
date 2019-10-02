@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SEO from "../components/seo";
 import GlobalStyles from "../components/GlobalStyles";
 import theme from "../theme";
+import profile from "../assets/images/profile.png";
 
 const IndexContainer = styled.div`
   min-height: 100vh;
@@ -127,13 +128,13 @@ const Menu = styled.div`
   }
 `;
 
-const Ul = styled.ul`
+const List = styled.ul`
   margin-top: 40px;
   display: flex;
   justify-content: center;
 `;
 
-const Li = styled.li`
+const Item = styled.li`
   color: ${theme.mainColor};
   font-weight: 700;
   opacity: 0.8;
@@ -161,9 +162,9 @@ const IndexPage = () => {
         author,
         social: { github },
         heading,
-        subHeading,
-      },
-    },
+        subHeading
+      }
+    }
   } = useStaticQuery(
     graphql`
       query {
@@ -204,10 +205,7 @@ const IndexPage = () => {
       <CardBox>
         <Card>
           <Profile>
-            <ProfileImage
-              src={require("../assets/images/danah.png")}
-              alt="avatar"
-            />
+            <ProfileImage src={profile} alt="avatar" />
             <NameBox>
               <Name>{heading}</Name>
               <NickName>@{author}</NickName>
@@ -217,26 +215,28 @@ const IndexPage = () => {
             </Introduction>
           </Profile>
           <Menu>
-            <Ul>
-              <Li>
+            <List>
+              <Item>
                 <Link to="/about">About</Link>
-              </Li>
-              <Li>
+              </Item>
+              <Item>
                 <Link to="/blog">Blog</Link>
-              </Li>
-              <Li>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={`https://github.com/${github}`}
-                >
-                  Github
-                </a>
-              </Li>
-              <Li>
+              </Item>
+              {github && (
+                <Item>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={`https://github.com/${github}`}
+                  >
+                    Github
+                  </a>
+                </Item>
+              )}
+              <Item>
                 <Link to="/email">Email</Link>
-              </Li>
-            </Ul>
+              </Item>
+            </List>
           </Menu>
         </Card>
       </CardBox>

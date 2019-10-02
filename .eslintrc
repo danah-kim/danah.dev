@@ -14,7 +14,7 @@
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "no-console": 0,
-    "comma-dangle": 0
+    "comma-dangle": ["error", "never"]
     // "no-cond-assign": ["error", "always"],
     // "no-set-state": "off",
     // "init-declarations": "off",

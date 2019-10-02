@@ -11,9 +11,10 @@ module.exports = {
   manifestDisplay: "minimal-ui",
   manifestIcon: "src/assets/images/logo.png",
   keywords: ["blog"],
+  blogTitle: "Danah's blog",
   heading: "Danah Kim",
   subHeading: "Slow, but steady progress",
   social: {
-    github: "sweetmilkys",
-  },
+    github: "sweetmilkys"
+  }
 };

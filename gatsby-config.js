@@ -8,50 +8,15 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "marksdown-pages",
-        path: `${__dirname}/posts/TIL`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "marksdown-pages",
-        path: `${__dirname}/posts/HTML`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "marksdown-pages",
-        path: `${__dirname}/posts/CSS`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "marksdown-pages",
-        path: `${__dirname}/posts/JavaScript`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "marksdown-pages",
-        path: `${__dirname}/posts/React`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "marksdown-pages",
-        path: `${__dirname}/posts/DataStructuresAlgorithms`,
-      },
+        path: `${__dirname}/posts`
+      }
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: `${__dirname}/src/assets/images`,
-      },
+        path: `${__dirname}/src/assets/images`
+      }
     },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
@@ -64,25 +29,25 @@ module.exports = {
             resolve: "gatsby-remark-prismjs",
             options: {
               aliases: { sh: "bash", js: "javascript" },
-              showLineNumbers: true,
-            },
-          },
-        ],
-      },
+              showLineNumbers: true
+            }
+          }
+        ]
+      }
     },
     {
       resolve: "gatsby-plugin-netlify",
       options: {
         headers: {
-          "/*": ["Strict-Transport-Security: max-age=63072000"],
+          "/*": ["Strict-Transport-Security: max-age=63072000"]
         }, // option to add more headers. `Link` headers are transformed by the below criteria
         allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
         mergeSecurityHeaders: true, // boolean to turn off the default security headers
         mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
         mergeCachingHeaders: true, // boolean to turn off the default caching headers
         transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
-        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
-      },
+        generateMatchPathRewrites: true // boolean to turn off automatic creation of redirect rules for client only paths
+      }
     },
     {
       resolve: "gatsby-plugin-manifest",
@@ -93,8 +58,8 @@ module.exports = {
         background_color: metaConfig.manifestBackgroundColor,
         theme_color: metaConfig.manifestThemeColor,
         display: metaConfig.manifestDisplay,
-        icon: metaConfig.manifestIcon,
-      },
+        icon: metaConfig.manifestIcon
+      }
     },
     {
       resolve: "gatsby-plugin-eslint",
@@ -104,9 +69,9 @@ module.exports = {
         stages: ["develop"],
         options: {
           emitWarning: true,
-          failOnError: false,
-        },
-      },
-    },
-  ],
+          failOnError: false
+        }
+      }
+    }
+  ]
 };

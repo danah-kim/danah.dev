@@ -3,16 +3,29 @@ import propTypes from "prop-types";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faTimes,
+  faHome,
+  faUser,
+  faBook,
+  faEnvelope
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-const Menu = styled.div`
-  text-align: right;
+const Header = styled.header`
+  display: flex;
   font-size: 2em;
   overflow: hidden;
-  padding: 5vh 5vh 0 0;
+  padding: 5vh 0;
+  justify-content: center;
 `;
 
+const BlogTitle = styled.h2``;
+
 const MenuBtn = styled.i`
+  position: absolute;
+  right: 5vh;
   transition: 0.5s all;
   :hover {
     color: ${props => props.theme.mainColor};
@@ -57,16 +70,17 @@ const Title = styled.h2`
 const Item = styled.li`
   padding: 0;
   border-top: 1px solid hsla(0, 0%, 100%, 0.15);
-
   :first-child {
     border-top: 0;
     margin-top: -1em;
   }
-
   a {
     display: block;
     padding: 1em 0;
     line-height: 1.5;
+  }
+  svg {
+    margin-right: 10px;
   }
 `;
 
@@ -83,42 +97,58 @@ const CloseBtn = styled.i`
     -webkit-transform 0.45s ease;
 `;
 
-const SideBar = ({ github }) => {
+const SideBar = ({ title, github }) => {
   const [headerOpen, toggleHeader] = useState(false);
   return (
     <>
-      <header>
-        <Menu>
-          <MenuBtn onClick={() => toggleHeader(!headerOpen)}>
-            <FontAwesomeIcon icon={faBars} />
-          </MenuBtn>
-        </Menu>
-      </header>
+      <Header>
+        <BlogTitle>{title}</BlogTitle>
+        <MenuBtn onClick={() => toggleHeader(!headerOpen)}>
+          <FontAwesomeIcon icon={faBars} />
+        </MenuBtn>
+      </Header>
       <NavBox isVisible={headerOpen}>
         <Nav isVisible={headerOpen}>
           <Title>Menu</Title>
           <ul>
             <Item>
-              <Link to="/">Home</Link>
+              <Link to="/" activeClassName={"isActive"}>
+                <FontAwesomeIcon icon={faHome} />
+                Home
+              </Link>
             </Item>
             <Item>
-              <Link to="/about">About</Link>
+              <Link to="/about" activeClassName={"isActive"}>
+                <FontAwesomeIcon icon={faUser} />
+                About
+              </Link>
             </Item>
             <Item>
-              <Link to="/blog">Blog</Link>
+              <Link to="/blog" activeClassName={"isActive"}>
+                <FontAwesomeIcon icon={faBook} />
+                Blog
+              </Link>
             </Item>
-            <Item>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={`https://github.com/${github}`}
-              >
-                Github
-              </a>
-            </Item>
-            <Item>
-              <Link to="/email">Email</Link>
-            </Item>
+            {github && (
+              <>
+                <Item>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={`https://github.com/${github}`}
+                  >
+                    <FontAwesomeIcon icon={faGithub} />
+                    Github
+                  </a>
+                </Item>
+                <Item>
+                  <Link to="/email" activeClassName={"isActive"}>
+                    <FontAwesomeIcon icon={faEnvelope} />
+                    Email
+                  </Link>
+                </Item>
+              </>
+            )}
           </ul>
         </Nav>
         <CloseBtn
@@ -133,7 +163,8 @@ const SideBar = ({ github }) => {
 };
 
 SideBar.propTypes = {
-  github: propTypes.string,
+  title: propTypes.string.isRequired,
+  github: propTypes.string
 };
 
 export default SideBar;

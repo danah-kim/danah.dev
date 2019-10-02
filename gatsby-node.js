@@ -25,7 +25,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     createPage({
       path: node.frontmatter.path,
       component: blogPostTemplate,
-      context: {},
+      context: {}
     });
   });
 };

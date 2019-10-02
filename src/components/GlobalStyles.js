@@ -28,6 +28,9 @@ const globalStyles = createGlobalStyle`
     text-decoration: none;
   }
   li, i {
+    .isActive {
+      color: ${theme.mainColor};
+    }
     :hover {
       transition: 0.5s all;
       color: ${theme.mainColor};

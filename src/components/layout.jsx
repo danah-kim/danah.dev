@@ -12,14 +12,16 @@ const Layout = ({ children }) => {
   const {
     site: {
       siteMetadata: {
-        social: { github },
-      },
-    },
+        blogTitle,
+        social: { github }
+      }
+    }
   } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
+            blogTitle
             social {
               github
             }
@@ -34,7 +36,7 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <div id="wrapper">
-        <Sidebar github={github} />
+        <Sidebar title={blogTitle} github={github} />
         {children}
         <Footer />
       </div>
@@ -43,7 +45,7 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Layout;
