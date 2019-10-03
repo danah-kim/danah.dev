@@ -202,7 +202,7 @@ const IndexPage = () => {
     <IndexContainer bgUrl={bg}>
       <SEO title={title} keywords={["blog", "developement"]} />
       <GlobalStyles />
-      <CardBox className={isPreloaded && "is-preload"}>
+      <CardBox className={isPreloaded ? "is-preload" : null}>
         <Card>
           <Profile>
             <ProfileImage src={profile} alt="avatar" />
