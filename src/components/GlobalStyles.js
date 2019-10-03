@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import theme from "../theme";
+import theme from "theme";
 
 const globalStyles = createGlobalStyle`
   ${reset};
@@ -35,6 +35,12 @@ const globalStyles = createGlobalStyle`
       transition: 0.5s all;
       color: ${theme.mainColor};
     }
+  }
+  .is-preload {
+    transition: none !important;
+    transform: scale(.9);
+    opacity: 0;
+    animation: none !important;
   }
 `;
 

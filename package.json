@@ -18,6 +18,7 @@
     "gatsby-plugin-netlify": "^2.1.17",
     "gatsby-plugin-offline": "^3.0.8",
     "gatsby-plugin-react-helmet": "^3.1.8",
+    "gatsby-plugin-resolve-src": "^2.0.0",
     "gatsby-plugin-sharp": "^2.2.25",
     "gatsby-remark-embed-video": "^2.0.0",
     "gatsby-remark-images": "^3.1.25",

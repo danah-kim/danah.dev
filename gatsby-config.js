@@ -1,9 +1,13 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`
+});
+
 const metaConfig = require("./gatsby-meta-config");
 
 module.exports = {
   siteMetadata: metaConfig,
   plugins: [
-    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-resolve-src",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -20,6 +24,7 @@ module.exports = {
     },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-transformer-remark",
       options: {
@@ -36,6 +41,18 @@ module.exports = {
       }
     },
     {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: metaConfig.manifestName,
+        short_name: metaConfig.manifestShortName,
+        start_url: metaConfig.pathPrefix || metaConfig.manifestStartUrl,
+        background_color: metaConfig.manifestBackgroundColor,
+        theme_color: metaConfig.manifestThemeColor,
+        display: metaConfig.manifestDisplay,
+        icon: metaConfig.manifestIcon
+      }
+    },
+    {
       resolve: "gatsby-plugin-netlify",
       options: {
         headers: {
@@ -47,18 +64,6 @@ module.exports = {
         mergeCachingHeaders: true, // boolean to turn off the default caching headers
         transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
         generateMatchPathRewrites: true // boolean to turn off automatic creation of redirect rules for client only paths
-      }
-    },
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        name: metaConfig.manifestName,
-        short_name: metaConfig.manifestShortName,
-        start_url: metaConfig.pathPrefix || metaConfig.manifestStartUrl,
-        background_color: metaConfig.manifestBackgroundColor,
-        theme_color: metaConfig.manifestThemeColor,
-        display: metaConfig.manifestDisplay,
-        icon: metaConfig.manifestIcon
       }
     },
     {

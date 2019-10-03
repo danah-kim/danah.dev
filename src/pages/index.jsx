@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import styled from "styled-components";
 
-import SEO from "../components/seo";
-import GlobalStyles from "../components/GlobalStyles";
-import theme from "../theme";
-import profile from "../assets/images/profile.png";
+import SEO from "components/seo";
+import GlobalStyles from "components/GlobalStyles";
+import theme from "theme";
+import bg from "assets/images/bg.jpg";
+import profile from "assets/images/profile.png";
 
 const IndexContainer = styled.div`
   min-height: 100vh;
@@ -159,6 +160,7 @@ const IndexPage = () => {
   const {
     site: {
       siteMetadata: {
+        title,
         author,
         social: { github },
         heading,
@@ -170,6 +172,7 @@ const IndexPage = () => {
       query {
         site {
           siteMetadata {
+            title
             author
             heading
             subHeading
@@ -196,13 +199,10 @@ const IndexPage = () => {
   }, []);
 
   return (
-    <IndexContainer
-      className={isPreloaded ? "main-body is-preload" : "main-body"}
-      bgUrl={require("../assets/images/bg.jpg")}
-    >
-      <SEO title="Home" keywords={["blog", "developement"]} />
+    <IndexContainer bgUrl={bg}>
+      <SEO title={title} keywords={["blog", "developement"]} />
       <GlobalStyles />
-      <CardBox>
+      <CardBox className={isPreloaded && "is-preload"}>
         <Card>
           <Profile>
             <ProfileImage src={profile} alt="avatar" />
