@@ -1,7 +1,3 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`
-});
-
 const metaConfig = require("./gatsby-meta-config");
 
 module.exports = {
@@ -65,6 +61,12 @@ module.exports = {
         mergeCachingHeaders: true, // boolean to turn off the default caching headers
         transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
         generateMatchPathRewrites: true // boolean to turn off automatic creation of redirect rules for client only paths
+      }
+    },
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: `${process.env.GA_TRACKING_ID}`
       }
     },
     {

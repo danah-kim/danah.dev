@@ -16,13 +16,11 @@ const Layout = ({ children }) => {
   } = useSiteMetadata();
   const isPreloaded = useIspreloaded();
 
-  console.log(children);
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Sidebar title={blogTitle} github={github} />
-      <div className={isPreloaded && "is-preload"}>{children}</div>
+      <div className={isPreloaded ? "is-preload" : null}>{children}</div>
       <Footer />
     </ThemeProvider>
   );
