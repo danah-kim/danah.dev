@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useStaticQuery, graphql, Link } from "gatsby";
+import React from "react";
+import { Link } from "gatsby";
 import styled from "styled-components";
+import { ThemeProvider } from "styled-components";
+import theme from "theme";
+import GlobalStyles from "components/GlobalStyles";
 
 import SEO from "components/seo";
-import GlobalStyles from "components/GlobalStyles";
-import theme from "theme";
+import useSiteMetadata from "hooks/useSiteMetadata";
+import useIspreloaded from "hooks/useIspreloaded";
 import bg from "assets/images/bg.jpg";
 import profile from "assets/images/profile.png";
 
@@ -72,8 +75,8 @@ const NickName = styled.span`
   font-weight: bolder;
   letter-spacing: 0.5px;
   border-radius: 12px;
-  color: ${theme.nickNameCcolor};
-  background-color: ${theme.mainColor};
+  color: ${props => props.theme.nickNameCcolor};
+  background-color: ${props => props.theme.mainColor};
   opacity: 0.8;
   transform-origin: center;
   animation: flutter 2s infinite linear;
@@ -104,7 +107,7 @@ const Introduction = styled.div`
   margin: 40px 0;
   opacity: 0.8;
   :before {
-    border-top: 1px solid ${theme.grayColor};
+    border-top: 1px solid ${props => props.theme.grayColor};
     width: 100%;
     content: " ";
     display: block;
@@ -112,7 +115,7 @@ const Introduction = styled.div`
     opacity: 0.1;
   }
   :after {
-    border-bottom: 1px solid ${theme.grayColor};
+    border-bottom: 1px solid ${props => props.theme.grayColor};
     width: 100%;
     content: " ";
     display: block;
@@ -136,7 +139,7 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  color: ${theme.mainColor};
+  color: ${props => props.theme.mainColor};
   font-weight: 700;
   opacity: 0.8;
   transition: 0.5s all;
@@ -144,7 +147,7 @@ const Item = styled.li`
     margin-left: 10px;
   }
   :hover {
-    color: ${theme.grayColor};
+    color: ${props => props.theme.grayColor};
   }
 `;
 
@@ -152,105 +155,76 @@ const Footer = styled.footer`
   position: relative;
   bottom: 15px;
   a {
-    color: ${theme.blackColor};
+    color: ${props => props.theme.blackColor};
   }
 `;
 
 const IndexPage = () => {
   const {
-    site: {
-      siteMetadata: {
-        title,
-        author,
-        social: { github },
-        heading,
-        subHeading
-      }
-    }
-  } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            author
-            heading
-            subHeading
-            social {
-              github
-            }
-          }
-        }
-      }
-    `
-  );
-
-  const [isPreloaded, setIsPreloaded] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsPreloaded(false);
-    }, 100);
-    return () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-    };
-  }, []);
+    title,
+    author,
+    social: { github },
+    heading,
+    subHeading
+  } = useSiteMetadata();
+  const isPreloaded = useIspreloaded();
 
   return (
-    <IndexContainer bgUrl={bg}>
-      <SEO title={title} keywords={["blog", "developement"]} />
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <CardBox className={isPreloaded ? "is-preload" : null}>
-        <Card>
-          <Profile>
-            <ProfileImage src={profile} alt="avatar" />
-            <NameBox>
-              <Name>{heading}</Name>
-              <NickName>@{author}</NickName>
-            </NameBox>
-            <Introduction>
-              <p>{subHeading}</p>
-            </Introduction>
-          </Profile>
-          <Menu>
-            <List>
-              <Item>
-                <Link to="/about">About</Link>
-              </Item>
-              <Item>
-                <Link to="/blog">Blog</Link>
-              </Item>
-              {github && (
+      <IndexContainer bgUrl={bg}>
+        <SEO title={title} keywords={["blog", "developement"]} />
+        <GlobalStyles />
+        <CardBox className={isPreloaded && "is-preload"}>
+          <Card>
+            <Profile>
+              <ProfileImage src={profile} alt="avatar" />
+              <NameBox>
+                <Name>{heading}</Name>
+                <NickName>@{author}</NickName>
+              </NameBox>
+              <Introduction>
+                <p>{subHeading}</p>
+              </Introduction>
+            </Profile>
+            <Menu>
+              <List>
                 <Item>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={`https://github.com/${github}`}
-                  >
-                    Github
-                  </a>
+                  <Link to="/about">About</Link>
                 </Item>
-              )}
-              <Item>
-                <Link to="/email">Email</Link>
-              </Item>
-            </List>
-          </Menu>
-        </Card>
-      </CardBox>
-      <Footer>
-        &copy;<a href="https://github.com/sweetmilkys">Danah</a>, Built with{" "}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/sweetmilkys/gatsby-starter-sweet-blog"
-        >
-          Gatsby-starter-sweet-blog
-        </a>
-      </Footer>
-    </IndexContainer>
+                <Item>
+                  <Link to="/blog">Blog</Link>
+                </Item>
+                {github && (
+                  <Item>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={`https://github.com/${github}`}
+                    >
+                      Github
+                    </a>
+                  </Item>
+                )}
+                <Item>
+                  <Link to="/email">Email</Link>
+                </Item>
+              </List>
+            </Menu>
+          </Card>
+        </CardBox>
+        <Footer>
+          &copy;<a href="https://github.com/sweetmilkys">Danah</a>, Built with{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/sweetmilkys/gatsby-starter-sweet-blog"
+          >
+            Gatsby-starter-sweet-blog
+          </a>
+        </Footer>
+      </IndexContainer>
+    </ThemeProvider>
   );
 };
 
