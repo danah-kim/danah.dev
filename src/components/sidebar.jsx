@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
-import propTypes from "prop-types";
-import { Link } from "gatsby";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react"
+import propTypes from "prop-types"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faBars,
   faTimes,
   faHome,
   faUser,
   faBook,
-  faEnvelope
-} from "@fortawesome/free-solid-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 const Header = styled.header`
   display: flex;
@@ -19,25 +19,24 @@ const Header = styled.header`
   overflow: hidden;
   padding: 5vh 0;
   justify-content: center;
-`;
+`
 
-const BlogTitle = styled.h2``;
-
-const MenuBtn = styled.i`
+const NavOpenBtn = styled.i`
   position: absolute;
   right: 5vh;
   transition: 0.5s all;
   :hover {
     color: ${props => props.theme.mainColor};
   }
-`;
+`
 
-const NavContainer = styled.nav`
+const NavContainer = styled.div`
   width: 100%;
   height: 100%;
+  top: 0;
   position: fixed;
   visibility: ${props => (props.isVisible ? "visible" : "hidden")};
-`;
+`
 
 const NavBox = styled.nav`
   position: fixed;
@@ -51,10 +50,8 @@ const NavBox = styled.nav`
   background: ${props => props.theme.grayColor};
   color: #fff;
   cursor: default;
-  transform: translateX(0);
-  transition: transform 0.45s ease, visibility 0.45s,
-    -webkit-transform 0.45s ease;
-`;
+  transition: visibility 0.45s;
+`
 
 const Nav = styled.div`
   height: 100%;
@@ -62,7 +59,7 @@ const Nav = styled.div`
   overflow-y: auto;
   opacity: ${props => (props.isVisible ? 1 : 0)};
   transition: opacity 0.45s ease;
-`;
+`
 
 const Title = styled.h2`
   font-family: "sans-serif";
@@ -72,7 +69,7 @@ const Title = styled.h2`
   margin: 0 0 2em;
   text-transform: uppercase;
   letter-spacing: 0.35em;
-`;
+`
 
 const Item = styled.li`
   padding: 0;
@@ -89,9 +86,9 @@ const Item = styled.li`
   svg {
     margin-right: 10px;
   }
-`;
+`
 
-const CloseBtn = styled.i`
+const NavCloseBtn = styled.i`
   color: ${props => props.theme.grayColor};
   font-size: 2em;
   position: absolute;
@@ -102,33 +99,33 @@ const CloseBtn = styled.i`
     props.isVisible ? "scale(1) rotate(0deg)" : "scale(.25) rotate(180deg)"};
   transition: opacity 0.45s ease, transform 0.45s ease,
     -webkit-transform 0.45s ease;
-`;
+`
 
 const SideBar = ({ title, github }) => {
-  const [headerOpen, toggleHeader] = useState(false);
-  const sidebarRef = useRef();
+  const [isNavOpen, toggleNav] = useState(false)
 
-  const handleMenu = e => {
-    if (sidebarRef.current && sidebarRef.current === e.target) {
-      toggleHeader(prev => !prev);
+  const onClickNavButton = () => toggleNav(!isNavOpen)
+  const onClickOutsideNav = e => {
+    if (e.target.id === "sidebar") {
+      toggleNav(!isNavOpen)
     }
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", handleMenu);
-  }, []);
+  }
 
   return (
     <>
       <Header>
-        <BlogTitle>{title}</BlogTitle>
-        <MenuBtn onClick={() => toggleHeader(!headerOpen)}>
+        <h1>{title}</h1>
+        <NavOpenBtn onClick={onClickNavButton}>
           <FontAwesomeIcon icon={faBars} />
-        </MenuBtn>
+        </NavOpenBtn>
       </Header>
-      <NavContainer ref={sidebarRef} isVisible={headerOpen}>
-        <NavBox isVisible={headerOpen}>
-          <Nav isVisible={headerOpen}>
+      <NavContainer
+        id="sidebar"
+        isVisible={isNavOpen}
+        onClick={onClickOutsideNav}
+      >
+        <NavBox isVisible={isNavOpen}>
+          <Nav isVisible={isNavOpen}>
             <Title>Menu</Title>
             <ul>
               <Item>
@@ -171,24 +168,21 @@ const SideBar = ({ title, github }) => {
               )}
             </ul>
           </Nav>
-          <CloseBtn
-            isVisible={headerOpen}
-            onClick={() => toggleHeader(!headerOpen)}
-          >
+          <NavCloseBtn isVisible={isNavOpen} onClick={onClickNavButton}>
             <FontAwesomeIcon icon={faTimes} />
-          </CloseBtn>
+          </NavCloseBtn>
         </NavBox>
       </NavContainer>
     </>
-  );
-};
+  )
+}
 
 SideBar.propTypes = {
   title: propTypes.string.isRequired,
-  github: propTypes.string
-};
+  github: propTypes.string,
+}
 
-export default SideBar;
+export default SideBar
 
 // Todo
 // mobile size
