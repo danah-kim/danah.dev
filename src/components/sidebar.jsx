@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import propTypes from "prop-types";
 import { Link } from "gatsby";
 import styled from "styled-components";
@@ -30,6 +30,13 @@ const MenuBtn = styled.i`
   :hover {
     color: ${props => props.theme.mainColor};
   }
+`;
+
+const NavContainer = styled.nav`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  visibility: ${props => (props.isVisible ? "visible" : "hidden")};
 `;
 
 const NavBox = styled.nav`
@@ -99,6 +106,18 @@ const CloseBtn = styled.i`
 
 const SideBar = ({ title, github }) => {
   const [headerOpen, toggleHeader] = useState(false);
+  const sidebarRef = useRef();
+
+  const handleMenu = e => {
+    if (sidebarRef.current && sidebarRef.current === e.target) {
+      toggleHeader(prev => !prev);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleMenu);
+  }, []);
+
   return (
     <>
       <Header>
@@ -107,57 +126,59 @@ const SideBar = ({ title, github }) => {
           <FontAwesomeIcon icon={faBars} />
         </MenuBtn>
       </Header>
-      <NavBox isVisible={headerOpen}>
-        <Nav isVisible={headerOpen}>
-          <Title>Menu</Title>
-          <ul>
-            <Item>
-              <Link to="/" activeClassName={"isActive"}>
-                <FontAwesomeIcon icon={faHome} />
-                Home
-              </Link>
-            </Item>
-            <Item>
-              <Link to="/about" activeClassName={"isActive"}>
-                <FontAwesomeIcon icon={faUser} />
-                About
-              </Link>
-            </Item>
-            <Item>
-              <Link to="/blog" activeClassName={"isActive"}>
-                <FontAwesomeIcon icon={faBook} />
-                Blog
-              </Link>
-            </Item>
-            {github && (
-              <>
-                <Item>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={`https://github.com/${github}`}
-                  >
-                    <FontAwesomeIcon icon={faGithub} />
-                    Github
-                  </a>
-                </Item>
-                <Item>
-                  <Link to="/email" activeClassName={"isActive"}>
-                    <FontAwesomeIcon icon={faEnvelope} />
-                    Email
-                  </Link>
-                </Item>
-              </>
-            )}
-          </ul>
-        </Nav>
-        <CloseBtn
-          isVisible={headerOpen}
-          onClick={() => toggleHeader(!headerOpen)}
-        >
-          <FontAwesomeIcon icon={faTimes} />
-        </CloseBtn>
-      </NavBox>
+      <NavContainer ref={sidebarRef} isVisible={headerOpen}>
+        <NavBox isVisible={headerOpen}>
+          <Nav isVisible={headerOpen}>
+            <Title>Menu</Title>
+            <ul>
+              <Item>
+                <Link to="/" activeClassName={"isActive"}>
+                  <FontAwesomeIcon icon={faHome} />
+                  Home
+                </Link>
+              </Item>
+              <Item>
+                <Link to="/about" activeClassName={"isActive"}>
+                  <FontAwesomeIcon icon={faUser} />
+                  About
+                </Link>
+              </Item>
+              <Item>
+                <Link to="/blog" activeClassName={"isActive"}>
+                  <FontAwesomeIcon icon={faBook} />
+                  Blog
+                </Link>
+              </Item>
+              {github && (
+                <>
+                  <Item>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={`https://github.com/${github}`}
+                    >
+                      <FontAwesomeIcon icon={faGithub} />
+                      Github
+                    </a>
+                  </Item>
+                  <Item>
+                    <Link to="/email" activeClassName={"isActive"}>
+                      <FontAwesomeIcon icon={faEnvelope} />
+                      Email
+                    </Link>
+                  </Item>
+                </>
+              )}
+            </ul>
+          </Nav>
+          <CloseBtn
+            isVisible={headerOpen}
+            onClick={() => toggleHeader(!headerOpen)}
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </CloseBtn>
+        </NavBox>
+      </NavContainer>
     </>
   );
 };
