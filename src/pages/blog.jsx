@@ -8,8 +8,12 @@ import SEO from "../components/seo";
 const BlogPage = ({ data }) => {
   return (
     <Layout>
-      <SEO title="blog" />
-      <div>
+      <SEO title="Blog" />
+      <div
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-easing="ease-in-sine"
+      >
         <h1>Blog</h1>
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>

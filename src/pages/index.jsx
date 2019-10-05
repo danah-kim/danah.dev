@@ -2,14 +2,15 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
+import GlobalStyles from "components/globalStyles";
 import theme from "theme";
-import GlobalStyles from "components/GlobalStyles";
 
 import SEO from "components/seo";
+import Footer from "components/footer";
 import useSiteMetadata from "hooks/useSiteMetadata";
 import useIspreloaded from "hooks/useIspreloaded";
 import bg from "assets/images/bg.jpg";
-import profile from "assets/images/profile.png";
+import avatar from "assets/images/avatar.png";
 
 const IndexContainer = styled.div`
   min-height: 100vh;
@@ -30,10 +31,16 @@ const CardBox = styled.div`
   border-radius: 10px;
   transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
   box-shadow: 0 0.1rem 0.2rem 0.01rem rgba(0, 0, 0, 0.35);
+  @media only screen and (max-width: 320px) {
+    margin: 0;
+    width: fill-available;
+    margin-top: 50px;
+  }
   @media only screen and (max-width: 640px) {
     height: auto;
-    width: auto;
+    width: fill-available;
     padding: 0.3rem;
+    margin-top: 50px;
   }
 `;
 
@@ -61,11 +68,18 @@ const NameBox = styled.div`
   font-size: 2em;
   display: flex;
   justify-content: center;
+  @media only screen and (max-width: 320px) {
+    flex-direction: column;
+  }
 `;
 
 const Name = styled.span`
   margin-right: 8px;
   font-weight: 700;
+  @media only screen and (max-width: 320px) {
+    margin: auto;
+    margin-bottom: 0.5em;
+  }
 `;
 
 const NickName = styled.span`
@@ -100,6 +114,10 @@ const NickName = styled.span`
     100% {
       transform: rotate(0deg);
     }
+  }
+  @media only screen and (max-width: 320px) {
+    width: fit-content;
+    margin: auto;
   }
 `;
 
@@ -151,14 +169,6 @@ const Item = styled.li`
   }
 `;
 
-const Footer = styled.footer`
-  position: relative;
-  bottom: 15px;
-  a {
-    color: ${props => props.theme.blackColor};
-  }
-`;
-
 const IndexPage = () => {
   const {
     title,
@@ -174,11 +184,10 @@ const IndexPage = () => {
       <GlobalStyles />
       <IndexContainer bgUrl={bg}>
         <SEO title={title} keywords={["blog", "developement"]} />
-        <GlobalStyles />
-        <CardBox className={isPreloaded && "is-preload"}>
+        <CardBox className={isPreloaded ? "is-preload" : null}>
           <Card>
             <Profile>
-              <ProfileImage src={profile} alt="avatar" />
+              <ProfileImage src={avatar} alt="avatar" />
               <NameBox>
                 <Name>{heading}</Name>
                 <NickName>@{author}</NickName>
@@ -213,16 +222,7 @@ const IndexPage = () => {
             </Menu>
           </Card>
         </CardBox>
-        <Footer>
-          &copy;<a href="https://github.com/sweetmilkys">Danah</a>, Built with{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/sweetmilkys/gatsby-starter-sweet-blog"
-          >
-            Gatsby-starter-sweet-blog
-          </a>
-        </Footer>
+        <Footer />
       </IndexContainer>
     </ThemeProvider>
   );

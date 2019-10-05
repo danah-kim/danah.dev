@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import theme from "theme";
 
-const globalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   ${reset};
   *, :after, :before {
     box-sizing: inherit;
@@ -11,8 +11,7 @@ const globalStyles = createGlobalStyle`
     margin:0;
     padding:0;
     color: ${theme.grayColor};
-    font: 112.5%/1.45em;
-    font-family: 'Nunito', 'Avenir', 'Helvetica', 'sans-serif';
+    font-family: "Nunito", "Avenir", "Helvetica", "sans-serif";
   }
   h1 {
     display: block;
@@ -24,7 +23,6 @@ const globalStyles = createGlobalStyle`
     font-size: 1.2em;
     font-weight: 700;
     margin: 0;
-
     @media screen and (max-width: 360px) {
       font-size: 1em;
     }
@@ -48,6 +46,13 @@ const globalStyles = createGlobalStyle`
     opacity: 0;
     animation: none !important;
   }
+  .gatsby-highlight {
+    background-color: "#1d1f21";
+    border-radius: .3em;
+    margin: .5em 0;
+    padding: 1em;
+    overflow: auto;
+  }
 `;
 
-export default globalStyles;
+export default GlobalStyles;

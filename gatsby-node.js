@@ -2,7 +2,8 @@ const path = require("path");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
-  const blogPostTemplate = path.resolve("src/templates/blogPostTemplate.js");
+  const blogPostTemplate = path.resolve("./src/templates/blogPostTemplate.js");
+
   const result = await graphql(`
     {
       allMarkdownRemark {

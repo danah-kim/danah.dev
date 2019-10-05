@@ -1,17 +1,19 @@
 module.exports = {
   title: "Danah - love Programming",
   description: "Software Engineer Danah's Blog",
-  author: "sweetmilkys",
   siteUrl: "https://danah.dev",
+  pathPrefix: "",
+  siteImage: "src/assets/images/preview.png",
+  siteLanguage: "en",
+  author: "sweetmilkys",
+  // manifest.json
   manifestName: "Danah - love Programming",
   manifestShortName: "Danah's Blog", // max 12 characters
   manifestStartUrl: "/",
-  manifestBackgroundColor: "#EA8484",
+  manifestBackgroundColor: "#ffffff",
   manifestThemeColor: "#EA8484",
-  manifestDisplay: "minimal-ui",
+  manifestDisplay: "standalone",
   manifestIcon: "src/assets/images/logo.png",
-  keywords: ["blog"],
-  blogTitle: "Danah's blog",
   heading: "Danah Kim",
   subHeading: "Slow, but steady progress",
   social: {

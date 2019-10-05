@@ -1,4 +1,5 @@
-const metaConfig = require("./gatsby-meta-config");
+require("dotenv").config();
+const metaConfig = require("./contents/meta/config.js");
 
 module.exports = {
   siteMetadata: metaConfig,
@@ -7,8 +8,8 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "marksdown-pages",
-        path: `${__dirname}/posts`
+        name: "posts",
+        path: `${__dirname}/contents/posts/`
       }
     },
     {
@@ -25,16 +26,7 @@ module.exports = {
     {
       resolve: "gatsby-transformer-remark",
       options: {
-        plugins: [
-          "gatsby-remark-reading-time",
-          {
-            resolve: "gatsby-remark-prismjs",
-            options: {
-              aliases: { sh: "bash", js: "javascript" },
-              showLineNumbers: true
-            }
-          }
-        ]
+        plugins: ["gatsby-remark-reading-time", "gatsby-remark-prismjs"]
       }
     },
     {
@@ -66,7 +58,9 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: `${process.env.GA_TRACKING_ID}`
+        trackingId: process.env.GA_TRACKING_ID
+          ? process.env.GA_TRACKING_ID
+          : ""
       }
     },
     {

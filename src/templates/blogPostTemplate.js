@@ -4,13 +4,13 @@ import { graphql } from "gatsby";
 
 import Layout from "components/layout";
 
-export default function Template({ data }) {
+export default function blogPostTemplate({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
   return (
     <Layout>
       <div>
-        <h1>{frontmatter.title}</h1>
+        <h1>{frontmatter.siteTitle}</h1>
         <h2>{frontmatter.date}</h2>
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
