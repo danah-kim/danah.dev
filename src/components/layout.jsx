@@ -2,15 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "theme";
-import GlobalStyles from "./globalStyles";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import GlobalStyles from "./GlobalStyles";
 
 import useSiteMetadata from "hooks/useSiteMetadata";
 import Sidebar from "./sidebar";
 import Footer from "./footer";
-
-AOS.init();
 
 const Contents = styled.div`
   padding: 0 16px;

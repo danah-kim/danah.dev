@@ -47,10 +47,9 @@ const GlobalStyles = createGlobalStyle`
     animation: none !important;
   }
   .gatsby-highlight {
-    background-color: "#1d1f21";
     border-radius: .3em;
+    padding: 1em 0;
     margin: .5em 0;
-    padding: 1em;
     overflow: auto;
   }
 `;

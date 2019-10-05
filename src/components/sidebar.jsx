@@ -134,11 +134,7 @@ const SideBar = ({ title, github }) => {
   return (
     <>
       <HeaderContainer>
-        <h1
-          data-aos="flip-left"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="500"
-        >
+        <h1 data-aos="flip-left" data-aos-easing="ease-out-cubic">
           {pageTitle}
         </h1>
         <NavOpenBtn onClick={onClickNavButton}>

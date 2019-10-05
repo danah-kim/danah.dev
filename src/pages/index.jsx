@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
-import GlobalStyles from "components/globalStyles";
+import GlobalStyles from "components/GlobalStyles";
 import theme from "theme";
 
 import SEO from "components/seo";

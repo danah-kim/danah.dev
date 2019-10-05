@@ -16,14 +16,9 @@ const GridContainer = styled(Grid)`
 `;
 
 const ImageBox = styled(ButtonBase)`
-  width: 300px;
+  width: 235px;
   img {
     border-radius: 0.25rem;
-  }
-  @media only screen and (max-width: 360px) {
-    img {
-      max-width: 80%;
-    }
   }
 `;
 
@@ -57,7 +52,7 @@ const About = () => {
     <Layout>
       <SEO title="About" />
       <Paper className={classes.paper}>
-        <GridContainer container spacing={2}>
+        <GridContainer container spacing={4}>
           <Grid
             item
             data-aos="fade-right"
