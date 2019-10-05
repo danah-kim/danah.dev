@@ -1,13 +1,18 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import Layout from "components/layout";
 import SEO from "components/seo";
 
-const EmailPage = () => (
-  <Layout>
+const Email = ({ path }) => (
+  <Layout path={path}>
     <SEO title="Email" />
     <h1>Email</h1>
   </Layout>
 );
 
-export default EmailPage;
+Email.propTypes = {
+  path: propTypes.string
+};
+
+export default Email;

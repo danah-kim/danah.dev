@@ -5,9 +5,9 @@ import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-const BlogPage = ({ data }) => {
+const BlogPage = ({ path, data }) => {
   return (
-    <Layout>
+    <Layout path={path}>
       <SEO title="Blog" />
       <div
         data-aos="fade-up"

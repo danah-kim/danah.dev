@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
+import propTypes from "prop-types";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -8,7 +11,6 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 
 import Layout from "components/layout";
 import SEO from "components/seo";
-import profile from "assets/images/profile.jpg";
 
 const GridContainer = styled(Grid)`
   align-items: center;
@@ -16,8 +18,9 @@ const GridContainer = styled(Grid)`
 `;
 
 const ImageBox = styled(ButtonBase)`
-  width: 235px;
-  img {
+  max-width: 235px;
+  .makeStyles-img-2 {
+    width: 235px;
     border-radius: 0.25rem;
   }
 `;
@@ -45,11 +48,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const About = () => {
+const About = ({ data, path }) => {
   const classes = useStyles();
 
+  console.log(data.profileImage.childImageSharp.fluid);
   return (
-    <Layout>
+    <Layout path={path}>
       <SEO title="About" />
       <Paper className={classes.paper}>
         <GridContainer container spacing={4}>
@@ -60,7 +64,11 @@ const About = () => {
             data-aos-easing="ease-in-sine"
           >
             <ImageBox>
-              <img className={classes.img} alt="profile" src={profile} />
+              <Img
+                fluid={data.profileImage.childImageSharp.fluid}
+                className={classes.img}
+                alt="profile"
+              />
             </ImageBox>
           </Grid>
           <CodeGrid
@@ -113,4 +121,20 @@ const About = () => {
   );
 };
 
+About.propTypes = {
+  path: propTypes.string
+};
+
 export default About;
+
+export const query = graphql`
+  query {
+    profileImage: file(relativePath: { eq: "profile.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 235, quality: 80) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;

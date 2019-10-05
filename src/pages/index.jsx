@@ -9,8 +9,6 @@ import SEO from "components/seo";
 import Footer from "components/footer";
 import useSiteMetadata from "hooks/useSiteMetadata";
 import useIspreloaded from "hooks/useIspreloaded";
-import bg from "assets/images/bg.jpg";
-import avatar from "assets/images/avatar.png";
 
 const IndexContainer = styled.div`
   min-height: 100vh;
@@ -20,6 +18,7 @@ const IndexContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform: scale(1);
 `;
 
 const CardBox = styled.div`
@@ -182,12 +181,12 @@ const IndexPage = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <IndexContainer bgUrl={bg}>
+      <IndexContainer bgUrl={"/bg.jpg"}>
         <SEO title={title} keywords={["blog", "developement"]} />
         <CardBox className={isPreloaded ? "is-preload" : null}>
           <Card>
             <Profile>
-              <ProfileImage src={avatar} alt="avatar" />
+              <ProfileImage src={"/avatar.png"} alt="avatar" />
               <NameBox>
                 <Name>{heading}</Name>
                 <NickName>@{author}</NickName>

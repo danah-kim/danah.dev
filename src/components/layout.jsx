@@ -15,7 +15,7 @@ const Contents = styled.div`
   transition: opacity 1.5s ease;
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ path, children }) => {
   const {
     social: { github }
   } = useSiteMetadata();
@@ -23,10 +23,7 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Sidebar
-        title={children[0] ? children[0].props.title : null}
-        github={github}
-      />
+      <Sidebar path={path} github={github} />
       <Contents>{children}</Contents>
       <Footer />
     </ThemeProvider>
@@ -34,6 +31,7 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
+  path: PropTypes.string,
   children: PropTypes.node.isRequired
 };
 

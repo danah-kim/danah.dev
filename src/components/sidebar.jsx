@@ -105,7 +105,7 @@ const NavCloseBtn = styled.i`
     -webkit-transform 0.45s ease;
 `;
 
-const SideBar = ({ title, github }) => {
+const SideBar = ({ path, github }) => {
   const [isNavOpen, toggleNav] = useState(false);
 
   const onClickNavButton = () => toggleNav(!isNavOpen);
@@ -114,16 +114,15 @@ const SideBar = ({ title, github }) => {
       toggleNav(!isNavOpen);
     }
   };
-
   let pageTitle = "";
-  switch (title) {
-  case "About":
+  switch (path.split("/")[1]) {
+  case "about":
     pageTitle = "Who I am";
     break;
-  case "Blog":
+  case "blog":
     pageTitle = "Danah's blog";
     break;
-  case "Email":
+  case "email":
     pageTitle = "Work with me";
     break;
   default:
@@ -200,7 +199,7 @@ const SideBar = ({ title, github }) => {
 };
 
 SideBar.propTypes = {
-  title: propTypes.string || null,
+  path: propTypes.string,
   github: propTypes.string
 };
 

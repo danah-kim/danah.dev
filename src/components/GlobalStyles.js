@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
     margin:0;
     padding:0;
     color: ${theme.grayColor};
+    background: hsla(0, 0%, 95.7%, 0.8);
     font-family: "Nunito", "Avenir", "Helvetica", "sans-serif";
   }
   h1 {
