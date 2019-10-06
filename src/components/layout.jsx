@@ -1,10 +1,10 @@
+/* eslint-disable no-undef */
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "theme";
-import GlobalStyles from "./GlobalStyles";
-
-import useSiteMetadata from "hooks/useSiteMetadata";
+import GlobalStyle from "components/globalStyle";
+import SiteMetadata from "util/siteMetadata";
 import Sidebar from "./sidebar";
 import Footer from "./footer";
 
@@ -15,16 +15,16 @@ const Contents = styled.div`
   transition: opacity 1.5s ease;
 `;
 
-const Layout = ({ path, children }) => {
+const Layout = data => {
   const {
     social: { github }
-  } = useSiteMetadata();
+  } = SiteMetadata();
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Sidebar path={path} github={github} />
-      <Contents>{children}</Contents>
+      <GlobalStyle />
+      <Sidebar path={data.path} github={github} />
+      <Contents>{data.children}</Contents>
       <Footer />
     </ThemeProvider>
   );

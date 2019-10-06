@@ -51,18 +51,12 @@ const useStyles = makeStyles(theme => ({
 const About = ({ data, path }) => {
   const classes = useStyles();
 
-  console.log(data.profileImage.childImageSharp.fluid);
   return (
     <Layout path={path}>
       <SEO title="About" />
       <Paper className={classes.paper}>
         <GridContainer container spacing={4}>
-          <Grid
-            item
-            data-aos="fade-right"
-            data-aos-duration="1000"
-            data-aos-easing="ease-in-sine"
-          >
+          <Grid item>
             <ImageBox>
               <Img
                 fluid={data.profileImage.childImageSharp.fluid}

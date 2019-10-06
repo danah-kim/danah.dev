@@ -2,13 +2,12 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
-import GlobalStyles from "components/GlobalStyles";
 import theme from "theme";
-
+import GlobalStyle from "components/globalStyle";
 import SEO from "components/seo";
 import Footer from "components/footer";
-import useSiteMetadata from "hooks/useSiteMetadata";
-import useIspreloaded from "hooks/useIspreloaded";
+import SiteMetadata from "util/siteMetadata";
+import useIspreloaded from "util/useIspreloaded";
 
 const IndexContainer = styled.div`
   min-height: 100vh;
@@ -175,15 +174,14 @@ const IndexPage = () => {
     social: { github },
     heading,
     subHeading
-  } = useSiteMetadata();
-  const isPreloaded = useIspreloaded();
+  } = SiteMetadata();
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
+      <GlobalStyle />
       <IndexContainer bgUrl={"/bg.jpg"}>
         <SEO title={title} keywords={["blog", "developement"]} />
-        <CardBox className={isPreloaded ? "is-preload" : null}>
+        <CardBox className={useIspreloaded()}>
           <Card>
             <Profile>
               <ProfileImage src={"/avatar.png"} alt="avatar" />

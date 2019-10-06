@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
 const useIspreloaded = () => {
-  const [isPreloaded, setIsPreloaded] = useState(true);
+  const [isPreloaded, setIsPreloaded] = useState("is-preload");
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsPreloaded(false);
+      setIsPreloaded(null);
     }, 100);
     return () => {
       if (timer) {

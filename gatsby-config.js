@@ -4,7 +4,6 @@ const metaConfig = require("./contents/meta/config.js");
 module.exports = {
   siteMetadata: metaConfig,
   plugins: [
-    "gatsby-plugin-resolve-src",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -21,13 +20,29 @@ module.exports = {
         path: `${__dirname}/src/assets/images`
       }
     },
-
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-transformer-remark",
       options: {
-        plugins: ["gatsby-remark-reading-time", "gatsby-remark-prismjs"]
+        plugins: [
+          {
+            resolve: "gatsby-remark-embed-video",
+            options: {
+              related: false,
+              noIframeBorder: true
+            }
+          },
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 800,
+              quality: 100
+            }
+          },
+          "gatsby-remark-reading-time",
+          "gatsby-remark-prismjs"
+        ]
       }
     },
     {

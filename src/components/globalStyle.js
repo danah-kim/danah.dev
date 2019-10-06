@@ -1,8 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import theme from "theme";
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   ${reset};
   *, :after, :before {
     box-sizing: inherit;
@@ -10,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin:0;
     padding:0;
-    color: ${theme.grayColor};
+    color: ${props => props.theme.grayColor};
     background: hsla(0, 0%, 95.7%, 0.8);
     font-family: "Nunito", "Avenir", "Helvetica", "sans-serif";
   }
@@ -34,11 +33,11 @@ const GlobalStyles = createGlobalStyle`
   }
   li, i {
     .isActive {
-      color: ${theme.mainColor};
+      color: ${props => props.theme.mainColor};
     }
     :hover {
       transition: 0.5s all;
-      color: ${theme.mainColor};
+      color: ${props => props.theme.mainColor};
     }
   }
   .is-preload {
@@ -55,4 +54,4 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export default GlobalStyles;
+export default GlobalStyle;

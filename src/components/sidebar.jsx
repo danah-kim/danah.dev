@@ -36,6 +36,7 @@ const NavContainer = styled.div`
   height: 100%;
   top: 0;
   position: fixed;
+  z-index: 1;
   visibility: ${props => (props.isVisible ? "visible" : "hidden")};
 `;
 
@@ -114,8 +115,8 @@ const SideBar = ({ path, github }) => {
       toggleNav(!isNavOpen);
     }
   };
-  let pageTitle = "";
-  switch (path.split("/")[1]) {
+  let pageTitle = "Danah's blog";
+  switch (path && path.split("/")[1]) {
   case "about":
     pageTitle = "Who I am";
     break;
@@ -126,7 +127,6 @@ const SideBar = ({ path, github }) => {
     pageTitle = "Work with me";
     break;
   default:
-    pageTitle = "Danah's blog";
     break;
   }
 
