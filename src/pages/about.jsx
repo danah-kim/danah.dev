@@ -19,8 +19,9 @@ const GridContainer = styled(Grid)`
 
 const ImageBox = styled(ButtonBase)`
   max-width: 235px;
-  .makeStyles-img-2 {
-    width: 235px;
+  img {
+    margin: auto;
+    display: block;
     border-radius: 0.25rem;
   }
 `;
@@ -39,12 +40,6 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     margin: "auto"
-  },
-  img: {
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%"
   }
 }));
 
@@ -59,8 +54,7 @@ const About = ({ data, path }) => {
           <Grid item>
             <ImageBox>
               <Img
-                fluid={data.profileImage.childImageSharp.fluid}
-                className={classes.img}
+                fixed={data.profileImage.childImageSharp.fixed}
                 alt="profile"
               />
             </ImageBox>
@@ -125,8 +119,8 @@ export const query = graphql`
   query {
     profileImage: file(relativePath: { eq: "profile.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 235, quality: 80) {
-          ...GatsbyImageSharpFluid
+        fixed(width: 235, height: 176, quality: 80) {
+          ...GatsbyImageSharpFixed
         }
       }
     }
