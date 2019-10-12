@@ -7,6 +7,18 @@
   "parser": "babel-eslint",
   "plugins": ["react"],
   "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "settings": {
+    "react": {
+      "version": "detect",
+      "flowVersion": "0.53"
+    },
+    "propWrapperFunctions": [
+      "forbidExtraProps",
+      { "property": "freeze", "object": "Object" },
+      { "property": "myFavoriteWrapper" }
+    ],
+    "linkComponents": ["Hyperlink", { "name": "Link", "linkAttribute": "to" }]
+  },
   "rules": {
     "indent": ["error", 2],
     "curly": "error",
@@ -15,9 +27,5 @@
     "semi": ["error", "always"],
     "no-console": 0,
     "comma-dangle": ["error", "never"]
-    // "no-cond-assign": ["error", "always"],
-    // "no-set-state": "off",
-    // "init-declarations": "off",
-    // "no-inline-comments": "off"
   }
 }

@@ -3,7 +3,6 @@ import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import propTypes from "prop-types";
-import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -12,62 +11,55 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import Layout from "components/layout";
 import SEO from "components/seo";
 
-const GridContainer = styled(Grid)`
-  align-items: center;
-  justify-content: center;
-`;
-
-const ImageBox = styled(ButtonBase)`
-  max-width: 235px;
-  img {
-    margin: auto;
-    display: block;
-    border-radius: 0.25rem;
-  }
-`;
-
-const CodeGrid = styled(Grid)`
-  @media only screen and (max-width: 995px) {
-    width: 100%;
-    max-width: 100% !important;
-    flex-basis: 100% !important;
-  }
-`;
-
-const Code = styled.div``;
-
 const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     margin: "auto"
+  },
+  imgGrid: {
+    "text-align": "center"
+  },
+  ButtonBase: {
+    border: "none !important",
+    background: "transparent"
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    "border-radius": "0.25rem",
+    width: "100vh"
   }
 }));
 
 const About = ({ data, path }) => {
+  console.log(data);
   const classes = useStyles();
 
   return (
     <Layout path={path}>
       <SEO title="About" />
       <Paper className={classes.paper}>
-        <GridContainer container spacing={4}>
-          <Grid item>
-            <ImageBox>
+        <Grid container spacing={4} justify="center" alignItems="center">
+          <Grid className={classes.imgGrid} item xs={12} md={3}>
+            <ButtonBase className={classes.ButtonBase}>
               <Img
+                className={classes.img}
                 fixed={data.profileImage.childImageSharp.fixed}
                 alt="profile"
               />
-            </ImageBox>
+            </ButtonBase>
           </Grid>
-          <CodeGrid
+          <Grid
             item
-            xs={8}
+            xs={12}
+            md={9}
+            zeroMinWidth
             data-aos="fade-left"
             data-aos-duration="1000"
             data-aos-easing="ease-in-sine"
           >
-            <Code className="gatsby-highlight" data-language="js">
-              <pre className="language-js">
+            <div data-language="js">
+              <pre className="language-js" style={{ margin: 0 }}>
                 <code className="language-js">
                   <span className="token keyword">const</span>
                   <span className="token variable">{" aboutMe "}</span>
@@ -101,9 +93,9 @@ const About = ({ data, path }) => {
                   <span className="token punctuation">{"};"}</span>
                 </code>
               </pre>
-            </Code>
-          </CodeGrid>
-        </GridContainer>
+            </div>
+          </Grid>
+        </Grid>
       </Paper>
     </Layout>
   );
