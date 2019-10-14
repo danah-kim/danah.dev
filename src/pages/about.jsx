@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const About = ({ data, path }) => {
-  console.log(data);
   const classes = useStyles();
 
   return (
