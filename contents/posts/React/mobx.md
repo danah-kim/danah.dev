@@ -51,12 +51,64 @@ import { observer, inject } from "mobx-react"
 
 ### 카운터 만들기
 
-클래스형태로 작성하면 decorator 를 편하게 쓸 수 있다
+```javascript
+import React, { Component } from "react"
+import { decorate, observable, action, computed } from "mobx"
+import { observer } from "mobx-react"
+
+class Counter extends Component {
+  number = 0
+
+  increase = () => {
+    this.number++
+  }
+
+  decrease = () => {
+    this.number--
+  }
+
+  get isZero() {
+    return this.number === 0
+  }
+
+  render() {
+    console.log(this.isZero)
+
+    return (
+      <div>
+        <h1>{this.number}</h1>
+        <button onClick={this.increase}>+1</button>
+        <button onClick={this.decrease}>-1</button>
+      </div>
+    )
+  }
+}
+
+decorate(observer(Counter), {
+  number: observable,
+  increase: action,
+  decrease: action,
+})
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Counter />
+      </div>
+    )
+  }
+}
+
+export default App
+```
+
+#### 클래스형태로 작성하면 decorator 문법을 편하게 쓸 수 있다
 
 ```javascript
 import React, { Component } from "react"
 import ReactDOM from "react-dom"
-import { observable, action } from "mobx"
+import { observable, action, computed } from "mobx"
 import { Provider, observer, inject } from "mobx-react"
 
 class CounterStore {
@@ -69,6 +121,10 @@ class CounterStore {
   @action decrease = () => {
     this.number--
   }
+
+  @computed get isZero() {
+    return this.number === 0
+  }
 }
 
 @inject("counter")
@@ -76,6 +132,9 @@ class CounterStore {
 class Counter extends Component {
   render() {
     const { counter } = this.props
+
+    console.log(counter.isZero)
+
     return (
       <div>
         <h1>{counter.number}</h1>
@@ -94,6 +153,67 @@ class App extends Component {
       </div>
     )
   }
+}
+
+const counter = new CounterStore()
+
+ReactDOM.render(
+  <Provider counter={counter}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+)
+```
+
+#### 함수형
+
+```javascript
+import React, { Component } from "react"
+import ReactDOM from "react-dom"
+import { observable, action, computed } from "mobx"
+import { Provider, inject } from "mobx-react"
+
+class CounterStore {
+  @observable number = 0
+
+  @action increase = () => {
+    this.number++
+  }
+
+  @action decrease = () => {
+    this.number--
+  }
+
+  @computed get isZero() {
+    return this.number === 0
+  }
+}
+
+const Counter = inject(({ counter }) => ({
+  number: counter.number,
+  increase: counter.increase,
+  decrease: counter.decrease,
+  isZero: counter.isZero,
+}))(props => {
+  const { number, increase, decrease, isZero } = props
+
+  console.log(counter.isZero)
+
+  return (
+    <div>
+      <h1>{number}</h1>
+      <button onClick={increase}>+1</button>
+      <button onClick={decrease}>-1</button>
+    </div>
+  )
+})
+
+const App = () => {
+  return (
+    <div>
+      <Counter />
+    </div>
+  )
 }
 
 const counter = new CounterStore()
