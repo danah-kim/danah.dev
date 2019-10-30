@@ -171,7 +171,7 @@ ReactDOM.render(
 import React, { Component } from "react"
 import ReactDOM from "react-dom"
 import { observable, action, computed } from "mobx"
-import { Provider, inject } from "mobx-react"
+import { Provider, observer, inject } from "mobx-react"
 
 class CounterStore {
   @observable number = 0
@@ -189,24 +189,29 @@ class CounterStore {
   }
 }
 
-const Counter = inject(({ counter }) => ({
-  number: counter.number,
-  increase: counter.increase,
-  decrease: counter.decrease,
-  isZero: counter.isZero,
-}))(props => {
-  const { number, increase, decrease, isZero } = props
+const Counter = composet(
+  inject(
+    ({ counter }) => ({
+      number: counter.number,
+      increase: counter.increase,
+      decrease: counter.decrease,
+      isZero: counter.isZero,
+    }),
+    observer
+  )(props => {
+    const { number, increase, decrease, isZero } = props
 
-  console.log(counter.isZero)
+    console.log(counter.isZero)
 
-  return (
-    <div>
-      <h1>{number}</h1>
-      <button onClick={increase}>+1</button>
-      <button onClick={decrease}>-1</button>
-    </div>
-  )
-})
+    return (
+      <div>
+        <h1>{number}</h1>
+        <button onClick={increase}>+1</button>
+        <button onClick={decrease}>-1</button>
+      </div>
+    )
+  })
+)
 
 const App = () => {
   return (
