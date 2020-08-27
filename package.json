@@ -9,6 +9,7 @@
     "core-js": "^3.6.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "regenerator-runtime": "^0.13.7",
     "typescript": "~3.7.2"
@@ -20,6 +21,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.47",
     "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
     "eslint": "^6.6.0",
@@ -55,5 +57,9 @@
       "last 1 safari version"
     ]
   },
-  "eslintIgnore": ["src/setupTests.ts", "src/serviceWorker.ts", "*.test.tsx"]
+  "eslintIgnore": [
+    "src/setupTests.ts",
+    "src/serviceWorker.ts",
+    "*.test.tsx"
+  ]
 }

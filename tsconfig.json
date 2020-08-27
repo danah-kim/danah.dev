@@ -2,7 +2,12 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "noImplicitAny": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -15,9 +20,15 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "baseUrl": "./",
+    "baseUrl": "src",
     "newLine": "lf"
   },
-  "include": ["src"],
-  "exclude": ["/node_modules","src/setupTests.ts", "src/serviceWorker.ts"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "/node_modules",
+    "src/setupTests.ts",
+    "src/serviceWorker.ts"
+  ]
 }
