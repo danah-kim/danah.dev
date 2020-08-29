@@ -11,6 +11,7 @@ declare module 'styled-components' {
       black: string;
       grey: string;
       lightGrey: string;
+      lightPink: string;
     };
     keyframes: {
       fadeIn: Keyframes;

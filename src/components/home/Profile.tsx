@@ -1,5 +1,3 @@
-import Message from './Message';
-
 import React from 'react';
 import avatar from 'static/images/avatar.png';
 import styled from 'styled-components';
@@ -63,7 +61,6 @@ function Profile() {
         <Name>Danah Kim</Name>
         <NickName>@sweetmilkys</NickName>
       </NameBox>
-      <Message />
     </>
   );
 }

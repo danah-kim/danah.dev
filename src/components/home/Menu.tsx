@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const MenuBox = styled.div`
   :after {
     content: ' ';
     display: block;
@@ -32,7 +32,7 @@ const Item = styled.li`
 
 function Menu() {
   return (
-    <Container>
+    <MenuBox>
       <List>
         <Item>
           <Link to="/about">About</Link>
@@ -46,7 +46,7 @@ function Menu() {
           <Link to="/email">Email</Link>
         </Item>
       </List>
-    </Container>
+    </MenuBox>
   );
 }
 

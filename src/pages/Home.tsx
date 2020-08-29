@@ -1,12 +1,14 @@
+import Footer from 'components/home/Footer';
 import Menu from 'components/home/Menu';
+import Message from 'components/home/Message';
 import Profile from 'components/home/Profile';
 import React, { useEffect, useState } from 'react';
 import background from 'static/images/bg.jpg';
 import styled from 'styled-components';
 
-const IndexContainer = styled.div<{ bgUrl: string | undefined }>`
+const Container = styled.div<{ bgUrl: string | undefined }>`
   min-height: 100vh;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.lightPink};
   background: url(${(props) => props.bgUrl}) center center no-repeat fixed;
   background-size: cover;
   overflow-x: auto;
@@ -36,18 +38,19 @@ const CardBox = styled.div`
   box-shadow: ${(props) => props.theme.shadows.cardBox};
   opacity: initial;
 
-  @media only screen and (max-width: 320px) {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-  }
   @media only screen and (max-width: 640px) {
     height: auto;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 0.3rem;
+    margin-top: 50px;
+    border-radius: 0;
+  }
+  @media only screen and (max-width: 320px) {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 50px;
   }
 `;
@@ -74,14 +77,16 @@ function Home() {
   }, []);
 
   return (
-    <IndexContainer bgUrl={background}>
+    <Container bgUrl={background}>
       <CardBox className={loaded ? undefined : 'preload'}>
         <Card>
           <Profile />
+          <Message />
           <Menu />
         </Card>
       </CardBox>
-    </IndexContainer>
+      <Footer />
+    </Container>
   );
 }
 

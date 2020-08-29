@@ -15,7 +15,7 @@ const globalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
     color: ${(props) => props.theme.colors.grey};
-    background-color: ${(props) => props.theme.colors.lightGrey};
+    background-color: ${(props) => props.theme.colors.background};
   }
    html, body, #root {
     height: 100%;

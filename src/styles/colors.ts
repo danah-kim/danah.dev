@@ -6,7 +6,8 @@ const colors = {
   white: '#fff',
   black: '#333',
   grey: '#585858',
-  lightGrey: 'rgba(244, 244, 244, 0.8)',
+  lightGrey: '#CED4DA',
+  lightPink: '#E9C3B8',
 };
 
 export default colors;
