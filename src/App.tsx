@@ -1,4 +1,3 @@
-import GlobalStyles from './GlobalStyles';
 import routes from './routes';
 
 import React, { Suspense } from 'react';
@@ -8,21 +7,18 @@ import * as Routes from 'constants/routes';
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Suspense fallback={<div />}>
-          <Switch>
-            {Object.values(routes).map((route) => (
-              <Route key={route.label} path={route.path} exact component={route.component} />
-            ))}
-            <Route path="*">
-              <Redirect to={Routes.HOME} />
-            </Route>
-          </Switch>
-        </Suspense>
-      </BrowserRouter>
-      <GlobalStyles />
-    </>
+    <BrowserRouter>
+      <Suspense fallback={<div />}>
+        <Switch>
+          {Object.values(routes).map((route) => (
+            <Route key={route.label} path={route.path} exact component={route.component} />
+          ))}
+          <Route path="*">
+            <Redirect to={Routes.HOME} />
+          </Route>
+        </Switch>
+      </Suspense>
+    </BrowserRouter>
   );
 }
 
