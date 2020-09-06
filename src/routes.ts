@@ -4,7 +4,6 @@ import * as Routes from 'constants/routes';
 
 const Home = lazy(() => import('pages/Home'));
 const About = lazy(() => import('pages/About'));
-const Carrier = lazy(() => import('pages/Carrier'));
 const Email = lazy(() => import('pages/Email'));
 
 const routes = {
@@ -17,11 +16,6 @@ const routes = {
     label: 'about',
     path: Routes.ABOUT,
     component: About,
-  },
-  carrier: {
-    label: 'career',
-    path: Routes.CARRIER,
-    component: Carrier,
   },
   email: {
     label: 'email',

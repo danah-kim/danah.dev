@@ -92,7 +92,7 @@ const flutter = keyframes`
   }
 `;
 
-export default {
+const styledKeyFrames = {
   fadeIn,
   fadeOut,
   popInFromBottom,
@@ -102,3 +102,6 @@ export default {
   slideDown,
   flutter,
 };
+
+export type KeyFrames = typeof styledKeyFrames;
+export default styledKeyFrames;

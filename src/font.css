@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Nunito';
+    font-weight: 400;
+    src: url(static/fonts/NunitoRegular.ttf) format('truetype');
+}
+@font-face{
+    font-family: 'Nunito';
+    font-weight: 600;
+    src: url(static/fonts/NunitoSemiBold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Nunito';
+    font-weight: 700;
+    src: url(static/fonts/NunitoBold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(static/fonts/InterBlack.woff2) format("woff2"),
+    url(static/fonts/InterBlack.woff) format("woff");
+}

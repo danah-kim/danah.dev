@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const MenuBox = styled.div`
+const MenuContainer = styled.div`
   :after {
     content: ' ';
     display: block;
@@ -10,13 +10,12 @@ const MenuBox = styled.div`
   }
 `;
 
-const List = styled.ul`
-  margin-top: 40px;
+const MenuList = styled.ul`
   display: flex;
   justify-content: center;
 `;
 
-const Item = styled.li`
+const MenuItem = styled.li`
   color: ${(props) => props.theme.colors.main};
   font-weight: 700;
   opacity: 0.8;
@@ -32,22 +31,22 @@ const Item = styled.li`
 
 function Menu() {
   return (
-    <MenuBox>
-      <List>
-        <Item>
+    <MenuContainer>
+      <MenuList>
+        <MenuItem>
           <Link to="/about">About</Link>
-        </Item>
-        <Item>
+        </MenuItem>
+        <MenuItem>
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/sweetmilkys">
             Github
           </a>
-        </Item>
-        <Item>
+        </MenuItem>
+        <MenuItem>
           <Link to="/email">Email</Link>
-        </Item>
-      </List>
-    </MenuBox>
+        </MenuItem>
+      </MenuList>
+    </MenuContainer>
   );
 }
 
-export default Menu;
+export default memo(Menu);

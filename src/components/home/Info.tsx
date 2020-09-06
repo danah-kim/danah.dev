@@ -1,17 +1,14 @@
-import React from 'react';
+import React, { memo } from 'react';
 import avatar from 'static/images/avatar.png';
 import styled from 'styled-components';
 
-const ProfileImage = styled.img`
+const Avatar = styled.img`
   width: 150px;
   height: 150px;
   margin: 35px 0;
   padding: 2px;
   border-radius: 50%;
-  transition: 0.5s all;
-  :hover {
-    transform: scale(1.2);
-  }
+  transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
 `;
 
 const NameBox = styled.div`
@@ -19,7 +16,7 @@ const NameBox = styled.div`
   display: flex;
   justify-content: center;
 
-  @media only screen and (max-width: 320px) {
+  ${(props) => props.theme.media.xsmall} {
     flex-direction: column;
   }
 `;
@@ -28,8 +25,7 @@ const Name = styled.span`
   margin-right: 8px;
   font-weight: 800;
 
-  @media only screen and (max-width: 320px) {
-    margin: auto;
+  ${(props) => props.theme.media.xsmall} {
     margin-bottom: 0.5em;
   }
 `;
@@ -47,16 +43,16 @@ const NickName = styled.span`
   transform-origin: center;
   animation: ${(props) => props.theme.keyframes.flutter} 2s infinite linear;
 
-  @media only screen and (max-width: 320px) {
+  ${(props) => props.theme.media.xsmall} {
     width: fit-content;
     margin: auto;
   }
 `;
 
-function Profile() {
+function Info() {
   return (
     <>
-      <ProfileImage src={avatar} alt="avatar" />
+      <Avatar src={avatar} alt="avatar" />
       <NameBox>
         <Name>Danah Kim</Name>
         <NickName>@sweetmilkys</NickName>
@@ -65,4 +61,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default memo(Info);

@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
-const FooterBox = styled.footer`
+const FooterContainer = styled.footer`
   margin: 20px 0;
   text-align: center;
   width: 100%;
+  color: ${(props) => props.theme.colors.lightGrey};
 
   a {
-    color: ${(props) => props.theme.colors.lightGrey};
+    :hover {
+      transition: 0.2s;
+      color: ${(props) => props.theme.colors.main};
+    }
   }
 `;
 
 function Footer() {
   return (
-    <FooterBox>
-      Copyright &copy; 2020
-      <a href="https://github.com/sweetmilkys"> Danah</a>
-    </FooterBox>
+    <FooterContainer>
+      &copy; 2020
+      <a href="https://github.com/sweetmilkys"> Danah</a>. All rights reserved.
+    </FooterContainer>
   );
 }
 
-export default Footer;
+export default memo(Footer);

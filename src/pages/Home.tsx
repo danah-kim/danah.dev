@@ -1,9 +1,9 @@
 import Footer from 'components/home/Footer';
+import Info from 'components/home/Info';
 import Menu from 'components/home/Menu';
 import Message from 'components/home/Message';
-import Profile from 'components/home/Profile';
-import React, { useEffect, useState } from 'react';
-import background from 'static/images/bg.jpg';
+import React, { memo, useEffect, useState } from 'react';
+import background from 'static/images/bg.png';
 import styled from 'styled-components';
 
 const Container = styled.div<{ bgUrl: string | undefined }>`
@@ -14,10 +14,7 @@ const Container = styled.div<{ bgUrl: string | undefined }>`
   overflow-x: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   transform: scale(1);
-  opacity: 0.9;
-  user-select: none;
 
   .preload {
     transition: none !important;
@@ -36,9 +33,8 @@ const CardBox = styled.div`
   border-radius: 10px;
   transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
   box-shadow: ${(props) => props.theme.shadows.cardBox};
-  opacity: initial;
 
-  @media only screen and (max-width: 640px) {
+  ${(props) => props.theme.media.small} {
     height: auto;
     width: 100%;
     margin-left: auto;
@@ -47,7 +43,7 @@ const CardBox = styled.div`
     margin-top: 50px;
     border-radius: 0;
   }
-  @media only screen and (max-width: 320px) {
+  ${(props) => props.theme.media.xsmall} {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -80,7 +76,7 @@ function Home() {
     <Container bgUrl={background}>
       <CardBox className={loaded ? undefined : 'preload'}>
         <Card>
-          <Profile />
+          <Info />
           <Message />
           <Menu />
         </Card>
@@ -90,4 +86,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default memo(Home);
