@@ -1,9 +1,8 @@
 import routes from './routes';
 
+import NotFoundPage from 'pages/NotFoundPage';
 import React, { Suspense } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-
-import * as Routes from 'constants/routes';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
@@ -13,9 +12,7 @@ function App() {
           {Object.values(routes).map((route) => (
             <Route key={route.label} path={route.path} exact component={route.component} />
           ))}
-          <Route path="*">
-            <Redirect to={Routes.HOME} />
-          </Route>
+          <Route component={NotFoundPage} />
         </Switch>
       </Suspense>
     </BrowserRouter>
