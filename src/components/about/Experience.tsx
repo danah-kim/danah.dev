@@ -2,7 +2,9 @@ import anime from 'animejs';
 import Project from 'components/about/Project';
 import CardTemplate from 'components/CardTemplate';
 import React, { Fragment, memo, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { AngleRight } from 'static/svgs';
+import { sideMenuState } from 'store/common';
 import styled, { ThemeContext } from 'styled-components';
 
 import { EXPERIENCE, ProjectType } from 'constants/constant';
@@ -29,6 +31,10 @@ const ExperienceList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+
+  :hover {
+    color: inherit;
+  }
 `;
 
 const ExperienceItem = styled.li`
@@ -37,12 +43,12 @@ const ExperienceItem = styled.li`
   > span {
     display: block;
     font-weight: 400;
-    padding-bottom: 4px;
-    color: ${({ theme }) => theme.colors.lightGrey};
+    padding-bottom: 8px;
+    color: ${({ theme }) => theme.colors.yellowGrey};
   }
 
   :hover {
-    color: ${({ theme }) => theme.colors.grey};
+    color: inherit;
   }
 `;
 
@@ -79,29 +85,26 @@ const Description = styled.div`
 `;
 const Projects = {
   box: styled.div`
+    padding-top: 5px;
     padding-left: 15px;
   `,
   collapse: styled.div`
-    display: inline-block;
-    line-height: 22px;
+    display: flex;
 
     svg {
       fill: ${({ theme }) => theme.colors.grey};
     }
-
     span {
       transition: 0.2s all;
 
       :not(:first-of-type) {
         cursor: pointer;
+        padding-left: 5px;
       }
       :hover {
         :not(:first-of-type) {
           color: ${({ theme }) => theme.colors.main};
         }
-      }
-      :active {
-        background-color: ${({ theme }) => theme.colors.main};
       }
       ::selection {
         background-color: ${({ theme }) => theme.colors.main};
@@ -112,6 +115,7 @@ const Projects = {
 
 function Experience() {
   const { colors } = useContext(ThemeContext);
+  const setSideMenu = useSetRecoilState(sideMenuState);
   const [selectedProject, setSelectedProject] = useState<ProjectType | undefined>(undefined);
   const projectRef = useRef<HTMLDivElement>(null);
 
@@ -136,8 +140,9 @@ function Experience() {
   }, []);
 
   const onKeydown = useCallback(
-    ({ code }: KeyboardEvent) => {
-      if (code === 'Escape' && !selectedProject) {
+    (e: KeyboardEvent) => {
+      if (e.code === 'Escape' && !selectedProject) {
+        e.stopPropagation();
         onClickClose();
       }
     },
@@ -147,7 +152,10 @@ function Experience() {
   useEffect(() => {
     window.addEventListener('keydown', onKeydown);
 
-    return () => window.removeEventListener('keydown', onKeydown);
+    return () => {
+      window.removeEventListener('keydown', onKeydown);
+      setSideMenu(false);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -165,7 +173,7 @@ function Experience() {
           opacity: [0, 1],
           scale: [0, 1],
           duration: 900,
-          borderRadius: ['100%', '0%'],
+          borderRadius: ['100%', '15px'],
         });
       }
     },

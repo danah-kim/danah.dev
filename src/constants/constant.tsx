@@ -37,6 +37,8 @@ import React from 'react';
 import { Github, LinkedIn, StackShare } from 'static/svgs';
 import { IconProps } from 'types/styled';
 
+import * as Routes from 'constants/routes';
+
 export const LINKS = {
   github: {
     icon: Github,
@@ -49,6 +51,21 @@ export const LINKS = {
   stackShare: {
     icon: StackShare,
     url: 'https://stackshare.io/danah',
+  },
+};
+
+export const MENU = {
+  overview: {
+    name: 'Overview',
+    to: Routes.HOME,
+  },
+  about: {
+    name: 'About',
+    to: Routes.ABOUT,
+  },
+  mail: {
+    name: 'E-Mail',
+    to: Routes.EMAIL,
   },
 };
 
@@ -287,7 +304,7 @@ export const EXPERIENCE: {
   youngHwaRAK: Experience;
 } = {
   estMob: {
-    period: 'October 2019 - Present',
+    period: 'Oct 2019 - Present',
     location: 'Seoul, Korea',
     position: 'Front End Developer',
     homepage: 'https://home.sendycloud.com/',
@@ -312,7 +329,7 @@ export const EXPERIENCE: {
     ],
   },
   vanguardLab: {
-    period: 'December 2018 - October 2019',
+    period: 'Dec 2018 - Oct 2019',
     location: 'Seoul, Korea',
     position: 'Developer',
     projects: [
@@ -325,24 +342,24 @@ export const EXPERIENCE: {
     ],
   },
   gravity: {
-    period: 'February 2017 - April 2018',
+    period: 'Feb 2017 - Apr 2018',
     location: 'Seoul, Korea',
     position: 'HRM',
     homepage: 'http://www.gravity.co.kr/en/',
   },
   nox: {
-    period: 'October 2015 - December 2016',
+    period: 'Oct 2015 - Dec 2016',
     location: 'Yesan, Korea',
     position: 'HRM',
     homepage: 'https://www.noxglobal.com/eng/',
   },
   novaTech: {
-    period: 'March 2014 - Jun 2015',
+    period: 'Mar 2014 - Jun 2015',
     location: 'Cheonan, Korea',
     position: 'HRM',
   },
   youngHwaRAK: {
-    period: 'November 2011 - December 2012',
+    period: 'Nov 2011 - Dec 2012',
     location: 'RAK, UAE',
     position: 'HRM',
     homepage: 'https://yhrak.com/',

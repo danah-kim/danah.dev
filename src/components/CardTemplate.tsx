@@ -20,7 +20,7 @@ const Subject = styled.h2`
   font-family: Inter, Helvetica Neue, Arial, sans-serif;
   font-size: 120px;
   letter-spacing: -1.9px;
-  z-index: 10;
+  z-index: 100;
   line-height: 70px;
 
   ${(props) => props.theme.media.custom(1279, 769)} {

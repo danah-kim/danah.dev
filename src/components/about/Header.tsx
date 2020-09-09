@@ -7,7 +7,7 @@ const HeaderContainer = styled.h1`
   margin-bottom: 100px;
 
   ${(props) => props.theme.media.small} {
-    padding-bottom: 50px;
+    margin-bottom: 50px;
   }
 `;
 

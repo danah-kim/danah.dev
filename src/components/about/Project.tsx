@@ -1,5 +1,4 @@
-import Chip from '../Chip';
-
+import Chip from 'components/Chip';
 import React, { memo, forwardRef } from 'react';
 import styled from 'styled-components';
 
@@ -112,7 +111,15 @@ const Project = forwardRef<HTMLDivElement, ProjectProps>((props, ref) => {
             <Line />
             <Line />
           </CloseButton>
-          <Title>{project?.url ? <a href={project.url}>{project.project}</a> : project.project}</Title>
+          <Title>
+            {project?.url ? (
+              <a target="_blank" rel="noopener noreferrer" href={project.url}>
+                {project.project}
+              </a>
+            ) : (
+              project.project
+            )}
+          </Title>
           <Description>{project.description}</Description>
           <Article>Stacks</Article>
           {project.techStacks.map((stack, index) => (

@@ -5,7 +5,7 @@ const FooterContainer = styled.footer`
   margin: 20px 0;
   text-align: center;
   width: 100%;
-  color: ${(props) => props.theme.colors.lightGrey};
+  color: ${(props) => props.theme.colors.white};
 
   a {
     :hover {
