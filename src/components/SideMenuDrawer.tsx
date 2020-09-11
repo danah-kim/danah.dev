@@ -71,6 +71,7 @@ const NavCategories = styled.ul`
   overflow: hidden;
   margin: 0 auto;
   transform: translateZ(0);
+  font-family: Inter, Helvetica Neue, Arial, sans-serif;
 
   :hover {
     color: inherit;

@@ -365,3 +365,8 @@ export const EXPERIENCE: {
     homepage: 'https://yhrak.com/',
   },
 };
+
+export const LOCALES = {
+  en: 'en_US',
+  ko: 'ko_KR',
+};

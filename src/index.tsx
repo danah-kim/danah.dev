@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { isFunction, isObject } from 'lib/helpers';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
@@ -34,16 +34,31 @@ if (process.env.NODE_ENV === 'production') {
   disableReactDevTools();
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <App />
-      </ThemeProvider>
-    </RecoilRoot>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const rootElement = document.getElementById('root');
+if (rootElement!.hasChildNodes()) {
+  hydrate(
+    <React.StrictMode>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <App />
+        </ThemeProvider>
+      </RecoilRoot>
+    </React.StrictMode>,
+    rootElement
+  );
+} else {
+  render(
+    <React.StrictMode>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <App />
+        </ThemeProvider>
+      </RecoilRoot>
+    </React.StrictMode>,
+    rootElement
+  );
+}
 
 serviceWorker.unregister();

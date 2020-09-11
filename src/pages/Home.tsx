@@ -2,6 +2,7 @@ import Footer from 'components/home/Footer';
 import Info from 'components/home/Info';
 import Menu from 'components/home/Menu';
 import Message from 'components/home/Message';
+import ReactHelmet from 'components/ReactHelmet';
 import React, { memo, useEffect, useState } from 'react';
 import background from 'static/images/bg.png';
 import styled from 'styled-components';
@@ -73,16 +74,19 @@ function Home() {
   }, []);
 
   return (
-    <Container bgUrl={background}>
-      <CardBox className={loaded ? undefined : 'preload'}>
-        <Card>
-          <Info />
-          <Message />
-          <Menu />
-        </Card>
-      </CardBox>
-      <Footer />
-    </Container>
+    <>
+      <ReactHelmet title="Danah" description="Software Engineer | Web Developer" />
+      <Container bgUrl={background}>
+        <CardBox className={loaded ? undefined : 'preload'}>
+          <Card>
+            <Info />
+            <Message />
+            <Menu />
+          </Card>
+        </CardBox>
+        <Footer />
+      </Container>
+    </>
   );
 }
 

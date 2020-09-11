@@ -1,3 +1,4 @@
+import ReactHelmet from './ReactHelmet';
 import SideMenuDrawer from './SideMenuDrawer';
 
 import React, { memo, ReactNode } from 'react';
@@ -70,13 +71,19 @@ const Line = styled.span`
 type PageTemplateProps = {
   isMenu?: boolean;
   children: ReactNode;
+  title: string;
+  description: string;
+  canonical: string;
+  type?: string;
 };
 
-function PageTemplate({ isMenu = false, children }: PageTemplateProps) {
+function PageTemplate(props: PageTemplateProps) {
+  const { isMenu = false, title, description, canonical, type, children } = props;
   const [sideMenu, setSideMenu] = useRecoilState(sideMenuState);
 
   return (
     <>
+      <ReactHelmet title={title} description={description} canonical={canonical} type={type} />
       <Wrapper>
         {isMenu && (
           <MenuButton

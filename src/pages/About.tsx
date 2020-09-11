@@ -6,6 +6,8 @@ import PageTemplate from 'components/PageTemplate';
 import React, { memo } from 'react';
 import styled from 'styled-components';
 
+import * as Routes from 'constants/routes';
+
 const Container = styled.div`
   ${(props) => props.theme.media.customMax(1280)} {
     padding: 0 20px;
@@ -14,7 +16,7 @@ const Container = styled.div`
 
 function About() {
   return (
-    <PageTemplate isMenu>
+    <PageTemplate isMenu title="About | Danah" description="danah's resume" canonical={Routes.ABOUT} type="portfolio">
       <Container>
         <Header />
         <Profile />
