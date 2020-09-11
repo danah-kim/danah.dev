@@ -1,3 +1,5 @@
+import Portal from './Potal';
+
 import anime from 'animejs';
 import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
@@ -15,6 +17,16 @@ const NavContainer = styled.div<{ open: boolean }>`
   z-index: 200;
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   transition: visibility 0.5s;
+`;
+
+const Dim = styled.div`
+  background: #333;
+  opacity: 0.6;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 const NavBox = styled.nav<{ open: boolean }>`
@@ -135,6 +147,10 @@ const SideMenuDrawer = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const categoriesRef = useRef<HTMLUListElement>(null);
 
+  const onClose = useCallback(() => {
+    setSideMenu(false);
+  }, [setSideMenu]);
+
   const onKeydown = useCallback(
     (e: KeyboardEvent) => {
       if (sideMenu && e.code === 'Escape') {
@@ -188,24 +204,27 @@ const SideMenuDrawer = () => {
   }, [sideMenu]);
 
   return (
-    <NavContainer id="sidebar" open={sideMenu}>
-      <NavBox open={sideMenu}>
-        <Nav ref={navRef}>
-          <NavHeader>
-            <span>Danah Kim</span>
-            <div className="nav-header-line" />
-          </NavHeader>
-          <NavCategories ref={categoriesRef}>
-            {Object.values(MENU).map(({ name, to }) => (
-              <NavCategory key={name}>
-                <Link to={to}>{name}</Link>
-              </NavCategory>
-            ))}
-          </NavCategories>
-          <Line />
-        </Nav>
-      </NavBox>
-    </NavContainer>
+    <Portal>
+      <NavContainer id="sidebar" open={sideMenu}>
+        <Dim onClick={onClose} />
+        <NavBox open={sideMenu}>
+          <Nav ref={navRef}>
+            <NavHeader>
+              <span>Danah Kim</span>
+              <div className="nav-header-line" />
+            </NavHeader>
+            <NavCategories ref={categoriesRef}>
+              {Object.values(MENU).map(({ name, to }) => (
+                <NavCategory key={name}>
+                  <Link to={to}>{name}</Link>
+                </NavCategory>
+              ))}
+            </NavCategories>
+            <Line />
+          </Nav>
+        </NavBox>
+      </NavContainer>
+    </Portal>
   );
 };
 

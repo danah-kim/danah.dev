@@ -37,26 +37,26 @@ if (process.env.NODE_ENV === 'production') {
 const rootElement = document.getElementById('root');
 if (rootElement!.hasChildNodes()) {
   hydrate(
-    <React.StrictMode>
+    <>
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
           <App />
         </ThemeProvider>
       </RecoilRoot>
-    </React.StrictMode>,
+    </>,
     rootElement
   );
 } else {
   render(
-    <React.StrictMode>
+    <>
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
           <App />
         </ThemeProvider>
       </RecoilRoot>
-    </React.StrictMode>,
+    </>,
     rootElement
   );
 }
