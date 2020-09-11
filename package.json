@@ -21,6 +21,7 @@
     "react-scripts": "3.4.3",
     "recoil": "^0.0.10",
     "regenerator-runtime": "^0.13.7",
+    "source-map-explorer": "^2.5.0",
     "styled-components": "^5.1.1",
     "styled-reset": "^4.2.2",
     "typescript": "~3.7.2"
@@ -55,10 +56,12 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build && npm run postbuild",
+    "build": "GENERATE_SOURCEMAP=false react-app-rewired build && npm run postbuild",
+    "build:dev": "react-app-rewired build && npm run postbuild",
     "test": "react-app-rewired test",
     "postbuild": "react-snap",
-    "lint": "eslint './src/**/*.{ts,tsx}'"
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": {
     "production": [
