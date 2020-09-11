@@ -1,13 +1,12 @@
 {
-  "presets": [["@babel/preset-env", { "useBuiltIns": "entry" }], "@babel/preset-react", "@babel/preset-typescript"],
-  "plugins": [
+  "presets": [
     [
-      "babel-plugin-styled-components",
+      "@babel/preset-env",
       {
-        "displayName": true,
-        "fileName": true,
-        "preprocess": false
+        "useBuiltIns": "entry"
       }
-    ]
+    ],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
   ]
 }
