@@ -1,3 +1,5 @@
+import { LABEL } from './ga';
+
 import {
   ReactJs,
   Gatsby,
@@ -43,14 +45,17 @@ export const LINKS = {
   github: {
     icon: Github,
     url: 'https://github.com/sweetmilkys',
+    label: LABEL.about.profile.github,
   },
   linkedIn: {
     icon: LinkedIn,
     url: 'https://www.linkedin.com/in/danah-kim-b36490170',
+    label: LABEL.about.profile.linkedin,
   },
   stackShare: {
     icon: StackShare,
     url: 'https://stackshare.io/danah',
+    label: LABEL.about.profile.stackShare,
   },
 };
 
@@ -58,14 +63,17 @@ export const MENU = {
   overview: {
     name: 'Overview',
     to: Routes.HOME,
+    label: LABEL.about.menu.overview,
   },
   about: {
     name: 'About',
     to: Routes.ABOUT,
+    label: LABEL.about.menu.about,
   },
   mail: {
     name: 'E-Mail',
     to: Routes.EMAIL,
+    label: LABEL.about.menu.email,
   },
 };
 
@@ -285,6 +293,7 @@ export type ProjectType = {
   description: string;
   techStacks: string[];
   url?: string;
+  label: string;
 };
 
 export type Experience = {
@@ -313,18 +322,21 @@ export const EXPERIENCE: {
         project: 'R-Project',
         description: 'Private',
         techStacks: ['TypeScript', 'React', 'Redux', 'Redux-Saga', 'Intl', 'Material-ui'],
+        label: LABEL.about.project.r,
       },
       {
         project: 'Send Anywhere',
         description: 'Develop file sharing web application that without connect device.',
         techStacks: ['JavaScript', 'React', 'Redux', 'Redux-Thunk', 'Express', 'Pug', 'Socket.io', 'i18next', 'aws'],
         url: 'https://send-anywhere.com/',
+        label: LABEL.about.project.sendAnywhere,
       },
       {
         project: 'Sendy',
         description: 'Develop file sharing web application that transfer by link and save to cloud.',
         techStacks: ['TypeScript', 'React', 'Mobx', 'Express', 'firebase', 'i18next', 'aws'],
         url: 'https://sendcloud.com/',
+        label: LABEL.about.project.sendy,
       },
     ],
   },
@@ -338,6 +350,7 @@ export const EXPERIENCE: {
         description:
           'worked as full-stack developer as develop Card Delivery System in Issuing/Pay of Card member team.',
         techStacks: ['javascript', 'Pro-C', 'pro-frame', 'ez-builder', 'I-studio', 'oracleDB', 'orange', 'UltraEdit'],
+        label: LABEL.about.project.nh,
       },
     ],
   },

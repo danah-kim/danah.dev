@@ -113,7 +113,12 @@ const Projects = {
   `,
 };
 
-function Experience() {
+type ExperienceProps = {
+  handleGa: (label: string) => () => void;
+};
+
+function Experience(props: ExperienceProps) {
+  const { handleGa } = props;
   const { colors } = useContext(ThemeContext);
   const setSideMenu = useSetRecoilState(sideMenuState);
   const [selectedProject, setSelectedProject] = useState<ProjectType | undefined>(undefined);
@@ -160,10 +165,11 @@ function Experience() {
   }, []);
 
   const onClickProject = useCallback(
-    (project: { project: string; description: string; techStacks: string[]; url?: string | undefined }) => (
+    (project: { project: string; description: string; techStacks: string[]; url?: string; label: string }) => (
       e: React.MouseEvent<HTMLSpanElement>
     ) => {
       setSelectedProject(project);
+      handleGa(project.label);
 
       if (projectRef.current) {
         projectRef.current.style.visibility = 'visible';
@@ -177,7 +183,7 @@ function Experience() {
         });
       }
     },
-    []
+    [handleGa]
   );
 
   return (

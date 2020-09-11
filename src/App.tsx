@@ -1,8 +1,11 @@
+import Analytics from './lib/analytics';
 import routes from './routes';
 
 import NotFoundPage from 'pages/NotFoundPage';
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+Analytics.initialize(process.env.GA_TRACKING_ID || '');
 
 function App() {
   return (

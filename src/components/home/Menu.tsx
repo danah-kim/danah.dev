@@ -1,6 +1,9 @@
-import React, { memo } from 'react';
+import Analytics from 'lib/analytics';
+import React, { memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { ACTION, CATEGORY, LABEL } from 'constants/ga';
 
 const MenuContainer = styled.div`
   :after {
@@ -30,19 +33,39 @@ const MenuItem = styled.li`
 `;
 
 function Menu() {
+  const handleGa = useCallback(
+    (label: string) => () => {
+      Analytics.event({
+        eventCategory: CATEGORY.about,
+        eventAction: ACTION.menu,
+        eventLabel: label,
+      });
+    },
+    []
+  );
+
   return (
     <MenuContainer>
       <MenuList>
         <MenuItem>
-          <Link to="/about">About</Link>
+          <Link to="/about" onClick={handleGa(LABEL.home.about)}>
+            About
+          </Link>
         </MenuItem>
         <MenuItem>
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/sweetmilkys">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/sweetmilkys"
+            onClick={handleGa(LABEL.home.github)}
+          >
             Github
           </a>
         </MenuItem>
         <MenuItem>
-          <Link to="/email">Email</Link>
+          <Link to="/email" onClick={handleGa(LABEL.home.email)}>
+            Email
+          </Link>
         </MenuItem>
       </MenuList>
     </MenuContainer>

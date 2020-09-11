@@ -94,7 +94,12 @@ const ImageItem = styled.img`
   }
 `;
 
-function Profile() {
+type ProfileProps = {
+  handleGa: (label: string) => () => void;
+};
+
+function Profile(props: ProfileProps) {
+  const { handleGa } = props;
   const { colors } = useContext(ThemeContext);
 
   return (
@@ -118,8 +123,8 @@ function Profile() {
           </p>
         </Message>
         <LinkList>
-          {Object.entries(LINKS).map(([key, { url, icon: Icon }]) => (
-            <LinkItem key={key}>
+          {Object.entries(LINKS).map(([key, { url, icon: Icon, label }]) => (
+            <LinkItem key={key} onClick={handleGa(label)}>
               <a target="_blank" rel="noopener noreferrer" href={url}>
                 <Icon />
               </a>

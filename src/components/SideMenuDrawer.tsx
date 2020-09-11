@@ -142,7 +142,12 @@ const Line = styled.div`
   position: absolute;
 `;
 
-const SideMenuDrawer = () => {
+type SideMenuDrawerProps = {
+  handleGa: (label: string) => () => void;
+};
+
+const SideMenuDrawer = (props: SideMenuDrawerProps) => {
+  const { handleGa } = props;
   const [sideMenu, setSideMenu] = useRecoilState(sideMenuState);
   const navRef = useRef<HTMLDivElement>(null);
   const categoriesRef = useRef<HTMLUListElement>(null);
@@ -154,10 +159,10 @@ const SideMenuDrawer = () => {
   const onKeydown = useCallback(
     (e: KeyboardEvent) => {
       if (sideMenu && e.code === 'Escape') {
-        setSideMenu(false);
+        onClose();
       }
     },
-    [setSideMenu, sideMenu]
+    [onClose, sideMenu]
   );
 
   useEffect(() => {
@@ -214,9 +219,11 @@ const SideMenuDrawer = () => {
               <div className="nav-header-line" />
             </NavHeader>
             <NavCategories ref={categoriesRef}>
-              {Object.values(MENU).map(({ name, to }) => (
+              {Object.values(MENU).map(({ name, to, label }) => (
                 <NavCategory key={name}>
-                  <Link to={to}>{name}</Link>
+                  <Link to={to} onClick={handleGa(label)}>
+                    {name}
+                  </Link>
                 </NavCategory>
               ))}
             </NavCategories>

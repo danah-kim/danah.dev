@@ -1,10 +1,13 @@
 import ReactHelmet from './ReactHelmet';
 import SideMenuDrawer from './SideMenuDrawer';
 
-import React, { memo, ReactNode } from 'react';
+import Analytics from 'lib/analytics';
+import React, { memo, ReactNode, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { sideMenuState } from 'store/common';
 import styled, { css } from 'styled-components';
+
+import { ACTION, CATEGORY, LABEL } from 'constants/ga';
 
 const Wrapper = styled.div`
   max-width: 1280px;
@@ -81,17 +84,28 @@ function PageTemplate(props: PageTemplateProps) {
   const { isMenu = false, title, description, canonical, type, children } = props;
   const [sideMenu, setSideMenu] = useRecoilState(sideMenuState);
 
+  const handleGa = useCallback(
+    (label: string) => () => {
+      Analytics.event({
+        eventCategory: CATEGORY.about,
+        eventAction: ACTION.menu,
+        eventLabel: label,
+      });
+    },
+    []
+  );
+
+  const onClickMenuBtn = useCallback(() => {
+    setSideMenu(!sideMenu);
+    handleGa(LABEL.about.menu.open);
+  }, [handleGa, setSideMenu, sideMenu]);
+
   return (
     <>
       <ReactHelmet title={title} description={description} canonical={canonical} type={type} />
       <Wrapper>
         {isMenu && (
-          <MenuButton
-            open={sideMenu}
-            onClick={() => {
-              setSideMenu(!sideMenu);
-            }}
-          >
+          <MenuButton open={sideMenu} onClick={onClickMenuBtn}>
             <Line />
             <Line />
             <Line />
@@ -99,7 +113,7 @@ function PageTemplate(props: PageTemplateProps) {
         )}
         {children}
       </Wrapper>
-      {isMenu && <SideMenuDrawer />}
+      {isMenu && <SideMenuDrawer handleGa={handleGa} />}
     </>
   );
 }

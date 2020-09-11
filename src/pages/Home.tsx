@@ -3,9 +3,12 @@ import Info from 'components/home/Info';
 import Menu from 'components/home/Menu';
 import Message from 'components/home/Message';
 import ReactHelmet from 'components/ReactHelmet';
+import Analytics from 'lib/analytics';
 import React, { memo, useEffect, useState } from 'react';
 import background from 'static/images/bg.png';
 import styled from 'styled-components';
+
+import * as Routes from 'constants/routes';
 
 const Container = styled.div<{ bgUrl: string | undefined }>`
   min-height: 100vh;
@@ -62,6 +65,8 @@ function Home() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    Analytics.pageView(Routes.HOME);
+
     const timer = setTimeout(() => {
       setLoaded(true);
     }, 1000);
