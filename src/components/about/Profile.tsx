@@ -1,5 +1,6 @@
+import anime from 'animejs';
 import CardTemplate from 'components/CardTemplate';
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useEffect, useRef } from 'react';
 import ProfileImage from 'static/images/profile.jpg';
 import styled, { ThemeContext } from 'styled-components';
 
@@ -101,10 +102,32 @@ type ProfileProps = {
 function Profile(props: ProfileProps) {
   const { handleGa } = props;
   const { colors } = useContext(ThemeContext);
+  const messageBoxRef = useRef<HTMLDivElement>(null);
+  const imageBoxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (messageBoxRef.current && imageBoxRef.current) {
+      messageBoxRef.current.style.transform = 'translateX(-700px)';
+      imageBoxRef.current.style.transform = 'translateX(700px)';
+
+      anime({
+        targets: messageBoxRef.current,
+        translateX: 0,
+        duration: 1500,
+        easing: 'easeInOutExpo',
+      });
+      anime({
+        targets: imageBoxRef.current,
+        translateX: 0,
+        duration: 1500,
+        easing: 'easeInOutExpo',
+      });
+    }
+  }, []);
 
   return (
     <CardTemplate title="profile" color={colors.pink}>
-      <MessageBox>
+      <MessageBox ref={messageBoxRef}>
         <Title>Danah Kim</Title>
         <p>Software Engineer | Web Developer</p>
         <Divider />
@@ -133,7 +156,7 @@ function Profile(props: ProfileProps) {
           ))}
         </LinkList>
       </MessageBox>
-      <ImageBox>
+      <ImageBox ref={imageBoxRef}>
         <ImageItem src={ProfileImage} alt="profile" />
       </ImageBox>
     </CardTemplate>

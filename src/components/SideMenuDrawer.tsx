@@ -4,7 +4,7 @@ import anime from 'animejs';
 import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { sideMenuState } from 'store/common';
+import { sideMenuState } from 'store';
 import styled from 'styled-components';
 
 import { MENU } from 'constants/constant';
@@ -156,6 +156,14 @@ const SideMenuDrawer = (props: SideMenuDrawerProps) => {
     setSideMenu(false);
   }, [setSideMenu]);
 
+  const onClickMenu = useCallback(
+    (label: string) => () => {
+      handleGa(label);
+      onClose();
+    },
+    [handleGa, onClose]
+  );
+
   const onKeydown = useCallback(
     (e: KeyboardEvent) => {
       if (sideMenu && e.code === 'Escape') {
@@ -213,22 +221,24 @@ const SideMenuDrawer = (props: SideMenuDrawerProps) => {
       <NavContainer id="sidebar" open={sideMenu}>
         <Dim onClick={onClose} />
         <NavBox open={sideMenu}>
-          <Nav ref={navRef}>
-            <NavHeader>
-              <span>Danah Kim</span>
-              <div className="nav-header-line" />
-            </NavHeader>
-            <NavCategories ref={categoriesRef}>
-              {Object.values(MENU).map(({ name, to, label }) => (
-                <NavCategory key={name}>
-                  <Link to={to} onClick={handleGa(label)}>
-                    {name}
-                  </Link>
-                </NavCategory>
-              ))}
-            </NavCategories>
-            <Line />
-          </Nav>
+          {sideMenu && (
+            <Nav ref={navRef}>
+              <NavHeader>
+                <span>Danah Kim</span>
+                <div className="nav-header-line" />
+              </NavHeader>
+              <NavCategories ref={categoriesRef}>
+                {Object.values(MENU).map(({ name, to, label }) => (
+                  <NavCategory key={name}>
+                    <Link to={to} onClick={onClickMenu(label)}>
+                      {name}
+                    </Link>
+                  </NavCategory>
+                ))}
+              </NavCategories>
+              <Line />
+            </Nav>
+          )}
         </NavBox>
       </NavContainer>
     </Portal>

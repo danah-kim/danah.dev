@@ -4,7 +4,7 @@ import SideMenuDrawer from './SideMenuDrawer';
 import Analytics from 'lib/analytics';
 import React, { memo, ReactNode, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { sideMenuState } from 'store/common';
+import { sideMenuState } from 'store';
 import styled, { css } from 'styled-components';
 
 import { ACTION, CATEGORY, LABEL } from 'constants/ga';

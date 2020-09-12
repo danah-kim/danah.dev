@@ -4,7 +4,7 @@ import CardTemplate from 'components/CardTemplate';
 import React, { Fragment, memo, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { AngleRight } from 'static/svgs';
-import { sideMenuState } from 'store/common';
+import { sideMenuState } from 'store';
 import styled, { ThemeContext } from 'styled-components';
 
 import { EXPERIENCE, ProjectType } from 'constants/constant';

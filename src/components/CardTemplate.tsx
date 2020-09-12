@@ -4,10 +4,10 @@ import styled from 'styled-components';
 const CardContainer = styled.div`
   overflow: hidden;
   box-sizing: border-box;
-  padding-bottom: 180px;
+  padding: 0 20px 180px;
 
   ${(props) => props.theme.media.small} {
-    padding-bottom: 90px;
+    padding: 0 10px 90px;
   }
 `;
 
