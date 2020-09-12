@@ -5,14 +5,17 @@ import Analytics from 'lib/analytics';
 import React, { memo, ReactNode, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { sideMenuState } from 'store';
-import styled, { css } from 'styled-components';
+import styled, { css, CSSObject } from 'styled-components';
 
 import { ACTION, CATEGORY, LABEL } from 'constants/ga';
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ wrapperCss?: CSSObject }>`
   max-width: 1280px;
   margin: 40px auto 0;
   overflow: hidden;
+
+  ${({ wrapperCss }) => wrapperCss}
+
   ${(props) => props.theme.media.small} {
     margin: 20px auto 0;
   }
@@ -73,15 +76,16 @@ const Line = styled.span`
 
 type PageTemplateProps = {
   isMenu?: boolean;
-  children: ReactNode;
   title: string;
   description: string;
   canonical: string;
   type?: string;
+  wrapperCss?: CSSObject;
+  children: ReactNode;
 };
 
 function PageTemplate(props: PageTemplateProps) {
-  const { isMenu = false, title, description, canonical, type, children } = props;
+  const { isMenu = false, title, description, canonical, type, wrapperCss, children } = props;
   const [sideMenu, setSideMenu] = useRecoilState(sideMenuState);
 
   const handleGa = useCallback(
@@ -97,13 +101,13 @@ function PageTemplate(props: PageTemplateProps) {
 
   const onClickMenuBtn = useCallback(() => {
     setSideMenu(!sideMenu);
-    handleGa(LABEL.about.menu.open);
+    handleGa(LABEL.menu.open);
   }, [handleGa, setSideMenu, sideMenu]);
 
   return (
     <>
       <ReactHelmet title={title} description={description} canonical={canonical} type={type} />
-      <Wrapper>
+      <Wrapper wrapperCss={wrapperCss}>
         {isMenu && (
           <MenuButton open={sideMenu} onClick={onClickMenuBtn}>
             <Line />

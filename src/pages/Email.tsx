@@ -21,7 +21,7 @@ function Email() {
 
   return (
     <PageTemplate isMenu title="Email | Danah" description="Send email to Danah" canonical={Routes.EMAIL}>
-      <Container>email</Container>
+      <Container>coming soon!</Container>
     </PageTemplate>
   );
 }

@@ -63,17 +63,17 @@ export const MENU = {
   overview: {
     name: 'Overview',
     to: Routes.HOME,
-    label: LABEL.about.menu.overview,
+    label: LABEL.menu.overview,
   },
   about: {
     name: 'About',
     to: Routes.ABOUT,
-    label: LABEL.about.menu.about,
+    label: LABEL.menu.about,
   },
   mail: {
     name: 'E-Mail',
     to: Routes.EMAIL,
-    label: LABEL.about.menu.email,
+    label: LABEL.menu.email,
   },
 };
 

@@ -15,13 +15,13 @@ export const LABEL = {
     github: 'home_github',
     email: 'home_email',
   },
+  menu: {
+    open: 'menu_open',
+    overview: 'menu_overview',
+    about: 'menu_about',
+    email: 'menu_email',
+  },
   about: {
-    menu: {
-      open: 'about_menu_open',
-      overview: 'about_overview',
-      about: 'about_about',
-      email: 'about_email',
-    },
     profile: {
       github: 'about_profile_github',
       linkedin: 'about_profile_linked_in',
