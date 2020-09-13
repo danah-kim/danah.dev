@@ -40,5 +40,9 @@ export const LABEL = {
       nh: 'about_project_nh',
     },
   },
-  email: {},
+  email: {
+    submit: 'submit_button',
+    success: 'submit_success',
+    error: 'submit_error',
+  },
 };

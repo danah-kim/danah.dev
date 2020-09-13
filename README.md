@@ -15,6 +15,6 @@
 - lint(ES, TS)
 - prettier
 - emailjs.com
-- react-recaptcha-x(Recaptcha v2)
+- react-google-recaptcha(Recaptcha v2)
 - notistack
 - @material-ui/core

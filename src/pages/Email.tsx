@@ -1,19 +1,15 @@
+import anime from 'animejs';
 import PageTemplate from 'components/PageTemplate';
 import EmailJs from 'emailjs-com';
 import Analytics from 'lib/analytics';
 import useInput from 'lib/hooks/useInput';
 import { useSnackbar } from 'notistack';
-import React, { memo, useCallback, useEffect } from 'react';
-import {
-  EReCaptchaV2Size,
-  EReCaptchaV2Theme,
-  ReCaptchaProvider,
-  ReCaptchaV2,
-  TReCaptchaV2Callback,
-} from 'react-recaptcha-x';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import TelephoneImage from 'static/images/telephone.jpg';
 import styled, { css } from 'styled-components';
 
+import { ACTION, CATEGORY, LABEL } from 'constants/ga';
 import * as Routes from 'constants/routes';
 
 const EmailContainer = styled.div`
@@ -127,28 +123,51 @@ function Email() {
   const [name, onChangeName] = useInput('');
   const [email, onChangeEmail] = useInput('');
   const [message, onChangeMessage] = useInput('');
+  const imageCardRef = useRef<HTMLDivElement>(null);
+  const contactCardRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     Analytics.pageView(Routes.EMAIL);
+
+    if (imageCardRef.current && contactCardRef.current) {
+      imageCardRef.current.style.transform = 'translateX(-700px)';
+      contactCardRef.current.style.transform = 'translateX(700px)';
+
+      anime({
+        targets: imageCardRef.current,
+        translateX: 0,
+        duration: 1500,
+        easing: 'easeInOutExpo',
+      });
+      anime({
+        targets: contactCardRef.current,
+        translateX: 0,
+        duration: 1500,
+        easing: 'easeInOutExpo',
+      });
+    }
   }, []);
+
+  const handleGa = useCallback(
+    (label: string) => () => {
+      Analytics.event({
+        eventCategory: CATEGORY.about,
+        eventAction: ACTION.menu,
+        eventLabel: label,
+      });
+    },
+    []
+  );
 
   const onMouseEnter = useCallback((e: React.MouseEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.currentTarget.focus();
   }, []);
 
-  const v2Callback: TReCaptchaV2Callback = (token: string | false | Error): void => {
-    if (typeof token === 'string') {
-      // console.log('this is the token', token);
-    } else if (typeof token === 'boolean' && !token) {
-      enqueueSnackbar('Token has expired, user must check the checkbox again', { variant: 'warning' });
-    } else if (token instanceof Error) {
-      enqueueSnackbar('Please check your network connection', { variant: 'error' });
-    }
-  };
-
   const onSubmitSendEmail = useCallback(
     (e) => {
       e.preventDefault();
+
+      handleGa(LABEL.email.submit);
 
       if (!name.length || !email.length || !message.length) {
         enqueueSnackbar('Oops... Check form data. some field empty.', { variant: 'warning' });
@@ -169,56 +188,52 @@ function Email() {
         (result) => {
           if (result.status === 200) {
             enqueueSnackbar('Your mail is sent!', { variant: 'success' });
+            handleGa(LABEL.email.success);
           } else {
             enqueueSnackbar('Oops... Something wrong', { variant: 'warning' });
+            handleGa(`${LABEL.email.error}_${result.status}`);
           }
         },
         (error) => {
           enqueueSnackbar('Failed... Try again?', { variant: 'error' });
+          handleGa(`${LABEL.email.error}_${error}`);
         }
       );
     },
-    [email, enqueueSnackbar, message, name]
+    [email, enqueueSnackbar, handleGa, message, name]
   );
 
   return (
-    <ReCaptchaProvider siteKeyV2={process.env.REACT_APP_RECAPTCHA_SITE_KEY} langCode="en">
-      <EmailContainer>
-        <PageTemplate
-          isMenu
-          title="Email | Danah"
-          description="Send email to Danah"
-          canonical={Routes.EMAIL}
-          wrapperCss={{ padding: '60px 20px', margin: 'auto' }}
-        >
-          <CardBox>
-            <ImageCard>
-              <Image src={TelephoneImage} />
-            </ImageCard>
-            <ContactCard onSubmit={onSubmitSendEmail}>
-              <Title>Wanna work with me ?</Title>
-              <p>Contact me if you want to hire me</p>
-              <Input type="name" placeholder="name" value={name} onChange={onChangeName} onMouseEnter={onMouseEnter} />
-              <Input
-                type="email"
-                placeholder="E-mail"
-                value={email}
-                onChange={onChangeEmail}
-                onMouseEnter={onMouseEnter}
-              />
-              <Message placeholder="Message" value={message} onChange={onChangeMessage} onMouseEnter={onMouseEnter} />
-              <ReCaptchaV2
-                callback={v2Callback}
-                theme={EReCaptchaV2Theme.Light}
-                size={EReCaptchaV2Size.Normal}
-                tabindex={0}
-              />
-              <SubmitButton type="submit">Submit</SubmitButton>
-            </ContactCard>
-          </CardBox>
-        </PageTemplate>
-      </EmailContainer>
-    </ReCaptchaProvider>
+    <EmailContainer>
+      <PageTemplate
+        isMenu
+        title="Email | Danah"
+        description="Send email to Danah"
+        canonical={Routes.EMAIL}
+        wrapperCss={{ padding: '60px 20px', margin: 'auto' }}
+      >
+        <CardBox>
+          <ImageCard ref={imageCardRef}>
+            <Image src={TelephoneImage} />
+          </ImageCard>
+          <ContactCard ref={contactCardRef} onSubmit={onSubmitSendEmail}>
+            <Title>Wanna work with me ?</Title>
+            <p>Contact me if you want to hire me</p>
+            <Input type="name" placeholder="name" value={name} onChange={onChangeName} onMouseEnter={onMouseEnter} />
+            <Input
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={onChangeEmail}
+              onMouseEnter={onMouseEnter}
+            />
+            <Message placeholder="Message" value={message} onChange={onChangeMessage} onMouseEnter={onMouseEnter} />
+            <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY} />
+            <SubmitButton type="submit">Submit</SubmitButton>
+          </ContactCard>
+        </CardBox>
+      </PageTemplate>
+    </EmailContainer>
   );
 }
 
