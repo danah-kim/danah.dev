@@ -10,8 +10,8 @@ import styled from 'styled-components';
 import { MENU } from 'constants/constant';
 
 const NavContainer = styled.div<{ open: boolean }>`
-  width: 100%;
-  height: 100%;
+  width: ${({ open }) => (open ? '100%' : '0')};
+  height: ${({ open }) => (open ? '100%' : '0')};
   top: 0;
   position: fixed;
   z-index: 200;
@@ -174,9 +174,17 @@ const SideMenuDrawer = (props: SideMenuDrawerProps) => {
   );
 
   useEffect(() => {
+    return () => {
+      onClose();
+    };
+  }, [onClose]);
+
+  useEffect(() => {
     window.addEventListener('keydown', onKeydown);
 
-    return () => window.removeEventListener('keydown', onKeydown);
+    return () => {
+      window.removeEventListener('keydown', onKeydown);
+    };
   }, [onKeydown]);
 
   useEffect(() => {
@@ -219,7 +227,7 @@ const SideMenuDrawer = (props: SideMenuDrawerProps) => {
   return (
     <Portal>
       <NavContainer id="sidebar" open={sideMenu}>
-        <Dim onClick={onClose} />
+        {sideMenu && <Dim onClick={onClose} />}
         <NavBox open={sideMenu}>
           {sideMenu && (
             <Nav ref={navRef}>

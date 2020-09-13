@@ -1,10 +1,11 @@
 import React, { memo, ReactNode } from 'react';
-import styled from 'styled-components';
+import styled, { CSSObject } from 'styled-components';
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{ containerCss?: CSSObject }>`
   overflow: hidden;
   box-sizing: border-box;
   padding: 0 20px 180px;
+  ${({ containerCss }) => containerCss}
 
   ${(props) => props.theme.media.small} {
     padding: 0 10px 90px;
@@ -61,18 +62,20 @@ type CardTemplateProps = {
   flexDirection?: 'row' | 'column';
   shadowSize?: 'xl' | 'lg' | 'md' | 'sm';
   color?: string;
+  containerCss?: CSSObject;
 };
 
-function CardTemplate({
+function Card({
   children,
   title,
   disableShadow = false,
   flexDirection = 'row',
   shadowSize,
   color,
+  containerCss,
 }: CardTemplateProps) {
   return (
-    <CardContainer>
+    <CardContainer containerCss={containerCss}>
       {!!title && <Subject>{title}</Subject>}
       {disableShadow ? (
         children
@@ -84,4 +87,4 @@ function CardTemplate({
     </CardContainer>
   );
 }
-export default memo(CardTemplate);
+export default memo(Card);

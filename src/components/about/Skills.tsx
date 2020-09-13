@@ -1,5 +1,5 @@
 import anime from 'animejs';
-import CardTemplate from 'components/CardTemplate';
+import Card from 'components/about/Card';
 import Hexagons from 'components/Hexagons';
 import React, { memo, useCallback, useContext, useEffect, useRef } from 'react';
 import styled, { ThemeContext } from 'styled-components';
@@ -111,7 +111,7 @@ function Skills() {
   }, [onScroll]);
 
   return (
-    <CardTemplate title="Tech Skills" color={colors.board}>
+    <Card title="Tech Skills" color={colors.board}>
       <SkillsContainer ref={element}>
         <SkillsItem className="center">
           <SubTitle>Occupational</SubTitle>
@@ -146,7 +146,7 @@ function Skills() {
           ))}
         </SkillsBox>
       </SkillsContainer>
-    </CardTemplate>
+    </Card>
   );
 }
 

@@ -1,5 +1,5 @@
 import anime from 'animejs';
-import CardTemplate from 'components/CardTemplate';
+import Card from 'components/about/Card';
 import React, { memo, useContext, useEffect, useRef } from 'react';
 import ProfileImage from 'static/images/profile.jpg';
 import styled, { ThemeContext } from 'styled-components';
@@ -126,7 +126,7 @@ function Profile(props: ProfileProps) {
   }, []);
 
   return (
-    <CardTemplate title="profile" color={colors.pink}>
+    <Card title="profile" color={colors.pink}>
       <MessageBox ref={messageBoxRef}>
         <Title>Danah Kim</Title>
         <p>Software Engineer | Web Developer</p>
@@ -159,7 +159,7 @@ function Profile(props: ProfileProps) {
       <ImageBox ref={imageBoxRef}>
         <ImageItem src={ProfileImage} alt="profile" />
       </ImageBox>
-    </CardTemplate>
+    </Card>
   );
 }
 

@@ -1,11 +1,13 @@
-import Analytics from './lib/analytics';
 import routes from './routes';
 
+import { init } from 'emailjs-com';
+import Analytics from 'lib/analytics';
 import NotFoundPage from 'pages/NotFoundPage';
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 Analytics.initialize('UA-149399239-1');
+init(process.env.REACT_APP_EMAILJS_SERVICE_ID);
 
 function App() {
   return (

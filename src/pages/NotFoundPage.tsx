@@ -2,8 +2,6 @@ import React, { useCallback, memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import * as Routes from 'constants/routes';
-
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -48,10 +46,11 @@ const Button = styled.button`
   padding: 0 1.125rem;
   height: 2.5rem;
   font-size: 1.125rem;
-  transition: 0.2s all;
+  transition: 0.3s all;
+  box-shadow: ${({ theme }) => theme.shadows.md};
 
   :hover {
-    box-shadow: ${({ theme }) => theme.shadows.md};
+    opacity: 0.8;
   }
 `;
 
@@ -59,7 +58,7 @@ function NotFoundPage() {
   const history = useHistory();
 
   const onClickButton = useCallback(() => {
-    history.push(Routes.HOME);
+    history.push('/notFound');
   }, [history]);
 
   return (

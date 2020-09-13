@@ -1,6 +1,6 @@
 import anime from 'animejs';
+import Card from 'components/about/Card';
 import Project from 'components/about/Project';
-import CardTemplate from 'components/CardTemplate';
 import React, { Fragment, memo, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { AngleRight } from 'static/svgs';
@@ -187,7 +187,7 @@ function Experience(props: ExperienceProps) {
   );
 
   return (
-    <CardTemplate title="Experience" color={colors.yellow}>
+    <Card title="Experience" color={colors.yellow}>
       <ExperienceContainer>
         <SubTitle>DEVELOPER, PLANNER</SubTitle>
         {Object.entries(EXPERIENCE).map(([company, { period, location, position, homepage, projects = [] }]) => (
@@ -225,7 +225,7 @@ function Experience(props: ExperienceProps) {
         ))}
       </ExperienceContainer>
       <Project project={selectedProject} ref={projectRef} onClose={onClickClose} />
-    </CardTemplate>
+    </Card>
   );
 }
 

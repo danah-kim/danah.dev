@@ -16,7 +16,6 @@ const globalStyles = createGlobalStyle`
     box-sizing: border-box;
     color: ${(props) => props.theme.colors.grey};
     background-color: ${(props) => props.theme.colors.background};
-    user-select: none;
   }
   a {
     text-decoration: none;
@@ -46,8 +45,8 @@ const globalStyles = createGlobalStyle`
     background-color: transparent;
   }
   img {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
   }
   h1 {
     font-size: 3.5em;

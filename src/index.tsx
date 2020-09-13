@@ -7,6 +7,7 @@ import GlobalStyles from './GlobalStyles';
 import * as serviceWorker from './serviceWorker';
 
 import { isFunction, isObject } from 'lib/helpers';
+import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import { hydrate, render } from 'react-dom';
 import { RecoilRoot } from 'recoil';
@@ -41,7 +42,9 @@ if (rootElement!.hasChildNodes()) {
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
-          <App />
+          <SnackbarProvider maxSnack={3}>
+            <App />
+          </SnackbarProvider>
         </ThemeProvider>
       </RecoilRoot>
     </>,
@@ -53,7 +56,9 @@ if (rootElement!.hasChildNodes()) {
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
-          <App />
+          <SnackbarProvider maxSnack={3}>
+            <App />
+          </SnackbarProvider>
         </ThemeProvider>
       </RecoilRoot>
     </>,
