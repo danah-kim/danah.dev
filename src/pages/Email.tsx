@@ -120,9 +120,9 @@ const SubmitButton = styled.button`
 
 function Email() {
   const { enqueueSnackbar } = useSnackbar();
-  const [name, onChangeName] = useInput('');
-  const [email, onChangeEmail] = useInput('');
-  const [message, onChangeMessage] = useInput('');
+  const [name, onChangeName, onResetName] = useInput('');
+  const [email, onChangeEmail, onResetEmail] = useInput('');
+  const [message, onChangeMessage, onResetMessage] = useInput('');
   const imageCardRef = useRef<HTMLDivElement>(null);
   const contactCardRef = useRef<HTMLFormElement>(null);
 
@@ -130,8 +130,8 @@ function Email() {
     Analytics.pageView(Routes.EMAIL);
 
     if (imageCardRef.current && contactCardRef.current) {
-      imageCardRef.current.style.transform = 'translateX(-700px)';
-      contactCardRef.current.style.transform = 'translateX(700px)';
+      imageCardRef.current.style.transform = 'translateX(-1000px)';
+      contactCardRef.current.style.transform = 'translateX(1000px)';
 
       anime({
         targets: imageCardRef.current,
@@ -188,6 +188,9 @@ function Email() {
         (result) => {
           if (result.status === 200) {
             enqueueSnackbar('Your mail is sent!', { variant: 'success' });
+            onResetName();
+            onResetEmail();
+            onResetMessage();
             handleGa(LABEL.email.success);
           } else {
             enqueueSnackbar('Oops... Something wrong', { variant: 'warning' });
@@ -200,7 +203,7 @@ function Email() {
         }
       );
     },
-    [email, enqueueSnackbar, handleGa, message, name]
+    [email, enqueueSnackbar, handleGa, message, name, onResetEmail, onResetMessage, onResetName]
   );
 
   return (
