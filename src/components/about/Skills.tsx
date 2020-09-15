@@ -9,11 +9,6 @@ import { SKILLS } from 'constants/constant';
 const SkillsContainer = styled.div`
   width: 100%;
   padding: 50px 40px 40px;
-
-  .center {
-    margin: 0 auto;
-    max-width: 440px;
-  }
 `;
 
 const SkillsBox = styled.div`
@@ -26,7 +21,13 @@ const SkillsBox = styled.div`
   }
 `;
 
-const SkillsItem = styled.div`
+const SkillsItem = styled.div<{ center?: boolean }>`
+  margin: ${({ center }) => center && '0 auto'};
+  max-width: ${({ center }) => center && '440px'};
+
+  .hexagon {
+    opacity: 0;
+  }
   :nth-of-type(1) {
     ${(props) => props.theme.media.customMax(711)} {
       ul {
@@ -113,7 +114,7 @@ function Skills() {
   return (
     <Card title="Tech Skills" color={colors.board}>
       <SkillsContainer ref={element}>
-        <SkillsItem className="center">
+        <SkillsItem center>
           <SubTitle>Occupational</SubTitle>
           <Hexagons
             type="flex"

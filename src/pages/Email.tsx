@@ -28,6 +28,7 @@ const ImageCard = styled.div`
   z-index: 1;
   position: absolute;
   border-radius: 50px;
+  transform: translateX(-1000px);
 `;
 
 const Image = styled.img`
@@ -51,6 +52,7 @@ const ContactCard = styled.form`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 50px;
   box-shadow: ${({ theme }) => theme.shadows.lg};
+  transform: translateX(1000px);
 
   p {
     padding-bottom: 40px;

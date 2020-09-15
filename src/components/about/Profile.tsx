@@ -13,6 +13,7 @@ const MessageBox = styled.div`
   padding: 50px 40px 20px 40px;
   display: flex;
   flex-direction: column;
+  transform: translateX(-700px);
 
   ${(props) => props.theme.media.small} {
     width: 100%;
@@ -82,6 +83,7 @@ const LinkItem = styled.div`
 const ImageBox = styled.div`
   width: 40%;
   border-radius: 0 15px 15px 0;
+  transform: translateX(700px);
 `;
 
 const ImageItem = styled.img`

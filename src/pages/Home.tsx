@@ -5,7 +5,7 @@ import Message from 'components/home/Message';
 import ReactHelmet from 'components/ReactHelmet';
 import Analytics from 'lib/analytics';
 import React, { memo, useEffect, useState } from 'react';
-import background from 'static/images/bg.png';
+import background from 'static/images/bg.jpg';
 import styled from 'styled-components';
 
 import * as Routes from 'constants/routes';

@@ -66,7 +66,8 @@
     "test": "react-app-rewired test",
     "postbuild": "react-snap",
     "lint": "eslint './src/**/*.{ts,tsx}'",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "clean": "rm -rf build"
   },
   "browserslist": {
     "production": [
