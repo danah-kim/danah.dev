@@ -10,7 +10,7 @@ const ProjectContainer = styled.div`
   left: 0;
   right: auto;
   bottom: auto;
-  background-color: ${(props) => props.theme.colors.wood};
+  background-color: ${(props) => props.theme.colors.mint};
   border-radius: 15px;
   transform: scale(0.8);
   width: 100%;

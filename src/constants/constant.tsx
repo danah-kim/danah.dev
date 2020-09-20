@@ -34,6 +34,7 @@ import {
   Bit,
   Sentry,
   MaterialUi,
+  Redux,
 } from '@icons-pack/react-simple-icons';
 import React from 'react';
 import { Github, LinkedIn, StackShare } from 'static/svgs';
@@ -128,6 +129,12 @@ export const SKILLS = {
         return <Gatsby {...params} />;
       },
       color: '#663399',
+    },
+    redux: {
+      icon(params: IconProps) {
+        return <Redux {...params} />;
+      },
+      color: '#764ABC',
     },
     styledComponent: {
       icon(params: IconProps) {

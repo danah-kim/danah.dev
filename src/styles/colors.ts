@@ -12,9 +12,9 @@ const colors = {
   yellowGrey: '#C1BDB2',
   board: '#1F4954',
   red: '#EC0101',
-  wood: '#45383C',
   violet: '#924384',
   border: '#E1D2DF',
+  mint: '#68C9D6',
 };
 
 export type Colors = typeof colors;

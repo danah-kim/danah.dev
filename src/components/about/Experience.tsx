@@ -1,9 +1,9 @@
 import anime from 'animejs';
 import Card from 'components/about/Card';
 import Project from 'components/about/Project';
-import React, { Fragment, memo, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import Chip from 'components/Chip';
+import React, { memo, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { AngleRight } from 'static/svgs';
 import { sideMenuState } from 'store';
 import styled, { ThemeContext } from 'styled-components';
 
@@ -85,8 +85,7 @@ const Description = styled.div`
 `;
 const Projects = {
   box: styled.div`
-    padding-top: 5px;
-    padding-left: 15px;
+    padding-left: 10px;
   `,
   collapse: styled.div`
     display: flex;
@@ -166,7 +165,7 @@ function Experience(props: ExperienceProps) {
 
   const onClickProject = useCallback(
     (project: { project: string; description: string; techStacks: string[]; url?: string; label: string }) => (
-      e: React.MouseEvent<HTMLSpanElement>
+      e?: React.MouseEvent<HTMLSpanElement>
     ) => {
       setSelectedProject(project);
       handleGa(project.label);
@@ -209,13 +208,8 @@ function Experience(props: ExperienceProps) {
               {!!projects?.length && (
                 <Projects.box>
                   <Projects.collapse>
-                    <AngleRight />
-                    <span>Project: </span>
                     {projects.map((item, index) => (
-                      <Fragment key={item.project}>
-                        {index !== 0 ? ', ' : ''}
-                        <span onClick={onClickProject(item)}>{item.project}</span>
-                      </Fragment>
+                      <Chip key={item.project} label={item.project} onClick={onClickProject(item)} size={12} />
                     ))}
                   </Projects.collapse>
                 </Projects.box>
