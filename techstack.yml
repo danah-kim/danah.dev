@@ -2,7 +2,7 @@ repo_name: danah-kim/danah.dev
 report_id: 1e33705686e57c8446a4c540bf32f68f
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-05T08:49:04+00:00'
+timestamp: '2024-02-29T18:40:42+00:00'
 requested_by: danah-kim
 provider: github
 branch: master
@@ -174,7 +174,7 @@ tools:
   last_updated_by: sweetmilkys
   last_updated_on: 2019-09-21 10:15:21.000000000 Z
 - name: Prettier
-  description: 'Prettier is an opinionated code formatter. '
+  description: Prettier is an opinionated code formatter.
   website_url: https://prettier.io/
   version: 2.1.1
   license: MIT
